@@ -44,4 +44,16 @@ struct QuestionResultItem: APIResultContainable {
         case isAccepted = "is_accepted"
         case body
     }
+
+    var htmlAttributedBody: NSAttributedString? {
+        guard let data = body.data(using: .utf8) else {
+            return nil
+        }
+
+        return try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil
+        )
+    }
 }

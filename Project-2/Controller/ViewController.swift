@@ -14,4 +14,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func presentResults() {
+        let resultsView = ResultsViewController()
+
+        resultsView.questionID = 39430231
+
+        navigationController?.pushViewController(resultsView, animated: true)
+    }
 }
