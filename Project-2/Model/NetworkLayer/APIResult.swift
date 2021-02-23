@@ -5,7 +5,7 @@
 //  Created by Vsevolod Pavlovskyi on 21.02.2021.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - APIResult
 struct APIResult<T: APIResultContainable>: Codable {
@@ -45,14 +45,16 @@ struct QuestionResultItem: APIResultContainable {
         case body
     }
 
-    var htmlAttributedBody: NSAttributedString? {
+    var htmlAttributedBody: NSTextStorage? {
         guard let data = body.data(using: .utf8) else {
             return nil
         }
 
-        return try? NSAttributedString(
+        return try? NSTextStorage(
             data: data,
-            options: [.documentType: NSAttributedString.DocumentType.html],
+            options: [
+                .documentType: NSAttributedString.DocumentType.html
+            ],
             documentAttributes: nil
         )
     }

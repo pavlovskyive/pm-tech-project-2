@@ -32,6 +32,7 @@ class AnswerCollectionViewCell: UICollectionViewCell {
 private extension AnswerCollectionViewCell {
     func commonInit() {
         prepareBodyLabel()
+        backgroundColor = .orange
     }
 
     func prepareBodyLabel() {
