@@ -85,7 +85,7 @@ extension APIService where T == Question {
         sort: Sort = .votes,
         completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
 
-        fetchData(pathComponent: APIConstants.searchComponent,
+        fetchData(pathComponent: APIConstants.questionsComponent,
                   query: query,
                   page: page,
                   pageSize: pageSize,
@@ -105,7 +105,7 @@ extension APIService where T == Answer {
         sort: Sort = .votes,
         completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
 
-        fetchData(pathComponent: APIConstants.searchComponent,
+        fetchData(pathComponent: APIConstants.answersComponent,
                   query: query,
                   page: page,
                   pageSize: pageSize,
