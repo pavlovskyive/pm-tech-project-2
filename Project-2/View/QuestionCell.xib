@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="QuestionCell" customModule="Project_2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="111"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="111"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="How to become an iOS developer in 15 days?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p97-Kl-9ab">
+                        <rect key="frame" x="15" y="15" width="292" height="51"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answered:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gX-fh-R2A">
+                        <rect key="frame" x="15" y="76" width="59.5" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wFH-3t-lU8">
+                        <rect key="frame" x="77.5" y="76.5" width="20" height="19"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wFH-3t-lU8" secondAttribute="height" multiplier="1:1" id="yB4-C2-rQg"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="9gX-fh-R2A" secondAttribute="bottom" constant="15" id="3XV-Pq-Pds"/>
+                <constraint firstItem="9gX-fh-R2A" firstAttribute="top" secondItem="p97-Kl-9ab" secondAttribute="bottom" constant="10" id="CvT-R8-KhV"/>
+                <constraint firstItem="wFH-3t-lU8" firstAttribute="height" secondItem="9gX-fh-R2A" secondAttribute="height" id="Jqu-RR-WmO"/>
+                <constraint firstItem="9gX-fh-R2A" firstAttribute="leading" secondItem="p97-Kl-9ab" secondAttribute="leading" id="MOh-I0-0XG"/>
+                <constraint firstItem="wFH-3t-lU8" firstAttribute="leading" secondItem="9gX-fh-R2A" secondAttribute="trailing" constant="3" id="PyL-Y0-0LY"/>
+                <constraint firstItem="wFH-3t-lU8" firstAttribute="centerY" secondItem="9gX-fh-R2A" secondAttribute="centerY" id="Qzw-Ep-VBc"/>
+                <constraint firstAttribute="trailing" secondItem="p97-Kl-9ab" secondAttribute="trailing" constant="15" id="Wfb-wM-qwo"/>
+                <constraint firstItem="p97-Kl-9ab" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="Z8h-WH-mFJ"/>
+                <constraint firstItem="p97-Kl-9ab" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="eAY-LL-H7N"/>
+            </constraints>
+            <size key="customSize" width="322" height="111"/>
+            <connections>
+                <outlet property="answeredLabel" destination="9gX-fh-R2A" id="e1I-Gz-iY9"/>
+                <outlet property="isAnsweredImageView" destination="wFH-3t-lU8" id="uc2-h2-pwn"/>
+                <outlet property="title" destination="p97-Kl-9ab" id="qIh-KX-ZAd"/>
+            </connections>
+            <point key="canvasLocation" x="318.84057971014494" y="121.54017857142857"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
