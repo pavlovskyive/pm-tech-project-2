@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - APIResult
 struct APIResult<T: APIResultContainable>: Codable {
-    let items: [T]
+    var items: [T]
     let hasMore: Bool
 
     enum CodingKeys: String, CodingKey {
@@ -38,24 +38,29 @@ struct SearchResultItem: APIResultContainable {
 
 struct QuestionResultItem: APIResultContainable {
     let isAccepted: Bool
-    let body: String
+    var body: String
 
     enum CodingKeys: String, CodingKey {
         case isAccepted = "is_accepted"
         case body
     }
 
-    var htmlAttributedBody: NSTextStorage? {
+    var htmlAttributedBody: NSMutableAttributedString?
+
+    mutating func parseAttachements(with textProcessor: TextAttachmentProcessor) {
         guard let data = body.data(using: .utf8) else {
-            return nil
+            return
         }
 
-        return try? NSTextStorage(
+        guard let attrString = try? NSMutableAttributedString(
             data: data,
             options: [
                 .documentType: NSAttributedString.DocumentType.html
             ],
-            documentAttributes: nil
-        )
+            documentAttributes: nil) else {
+            return
+        }
+
+        htmlAttributedBody = textProcessor.parseAttachements(attrString: attrString)
     }
 }

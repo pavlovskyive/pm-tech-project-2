@@ -11,14 +11,14 @@ class ResultsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView?
 
+    let textAttachementProcessor = DefaultTextAttachmentProcessor()
+
     let apiService = APIService()
 
     var questionID: Int?
     var page: Int = 1
 
-    var cell = AnswerCollectionViewCell()
-
-    var question: APIResult<QuestionResultItem>? {
+    private var question: APIResult<QuestionResultItem>? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView?.reloadData()
@@ -32,6 +32,30 @@ class ResultsViewController: UIViewController {
         prepareCollectionView()
         fetchAnswers()
 
+    }
+}
+
+private extension ResultsViewController {
+
+    func fetchAnswers() {
+        guard let questionID = questionID else {
+            return
+        }
+
+        apiService.fetchQuestion(questionId: questionID, page: page) { [weak self] res in
+            guard let self = self else { return }
+
+            switch res {
+            case .failure(let error):
+                print(error)
+            case .success(var result):
+                for idx in result.items.indices {
+                    result.items[idx].parseAttachements(with: self.textAttachementProcessor)
+                }
+
+                self.question = result
+            }
+        }
     }
 }
 
@@ -63,21 +87,6 @@ private extension ResultsViewController {
 
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView?.collectionViewLayout = layout
-    }
-
-    func fetchAnswers() {
-        guard let questionID = questionID else {
-            return
-        }
-
-        apiService.fetchQuestion(questionId: questionID, page: page) { [weak self] res in
-            switch res {
-            case .failure(let error):
-                print(error)
-            case .success(let result):
-                self?.question = result
-            }
-        }
     }
 }
 
