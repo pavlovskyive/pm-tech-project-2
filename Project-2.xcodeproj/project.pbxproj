@@ -26,6 +26,7 @@
 		796E357E25E25AEE0068FF89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E357D25E25AEE0068FF89 /* APIService.swift */; };
 		796E358225E267550068FF89 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358125E267550068FF89 /* APIResult.swift */; };
 		796E358725E26D9D0068FF89 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358625E26D9D0068FF89 /* Data.swift */; };
+		AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE358D3A25E579DD00F0116C /* ThrotllerService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		796E357D25E25AEE0068FF89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		796E358125E267550068FF89 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		796E358625E26D9D0068FF89 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		AE358D3A25E579DD00F0116C /* ThrotllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrotllerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				796E357425E250040068FF89 /* NetworkService.swift */,
 				796E357D25E25AEE0068FF89 /* APIService.swift */,
+				AE358D3A25E579DD00F0116C /* ThrotllerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			files = (
 				79122BCA25E559B5006D937C /* Configurable.swift in Sources */,
 				791EB6EC25E404B300704123 /* QuestionsViewController.swift in Sources */,
+				AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */,
 				796E357525E250040068FF89 /* NetworkService.swift in Sources */,
 				796E358725E26D9D0068FF89 /* Data.swift in Sources */,
 				796E358225E267550068FF89 /* APIResult.swift in Sources */,
