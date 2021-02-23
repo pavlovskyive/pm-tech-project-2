@@ -7,11 +7,9 @@
 
 import UIKit
 
-class PrefetchingDataSource<T: APIResultContainable,
-                            CellClass: UICollectionViewCell>: NSObject,
-                                                              UICollectionViewDataSource,
-                                                              UICollectionViewDataSourcePrefetching
-where CellClass: Configurable {
+// swiftlint:disable line_length
+class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching where CellClass: Configurable {
+    // swiftlint:enable line_length
 
     // MARK: Public Variables
 
