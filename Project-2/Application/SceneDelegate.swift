@@ -15,7 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
 
-        guard scene as? UIWindowScene != nil else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        let questionsVC = QuestionsViewController(
+            nibName: "QuestionsViewController",
+            bundle: Bundle.main)
+        window?.rootViewController = UINavigationController(rootViewController: questionsVC)
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
