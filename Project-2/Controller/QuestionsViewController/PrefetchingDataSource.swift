@@ -142,8 +142,10 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath) as? CellClass else {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellClass.reuseIdentifier,
+                for: indexPath) as? CellClass else {
+
             fatalError("Could not cast cell")
         }
 

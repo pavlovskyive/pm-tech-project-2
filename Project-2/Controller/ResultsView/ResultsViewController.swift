@@ -12,17 +12,16 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 
-    var questionID: Int?
-
     private var dataSource: PrefetchingDataSource<Answer, AnswerCollectionViewCell>?
 
     private let textAttachementProcessor = DefaultTextAttachmentPreloader()
 
     private let apiService = APIService<Answer>()
 
-    private var question: APIResult<Answer>? {
+    var question: APIResult<Answer>? {
         didSet {
             DispatchQueue.main.async { [weak self] in
+                
                 self?.collectionView?.reloadData()
             }
         }
@@ -41,11 +40,6 @@ class ResultsViewController: UIViewController {
 private extension ResultsViewController {
 
     func fetchAnswers() {
-        guard let questionID = questionID else { return }
-
-        activityIndicator?.startAnimating()
-        dataSource?.query = "\(questionID)"
-        dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
     }
 
     func onFetchCompleted(error: Error?) {
