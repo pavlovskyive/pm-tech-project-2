@@ -4,7 +4,6 @@
 //
 //  Created by Vsevolod Pavlovskyi on 21.02.2021.
 //
-// swiftlint:disable function_parameter_count
 
 import Foundation
 
@@ -29,32 +28,8 @@ class APIService <T: APIResultContainable> {
 
     func fetchData(
         pathComponent: String,
-        query: String,
-        page: Int,
-        pageSize: Int,
-        order: Order,
-        sort: Sort,
+        parameters: [String: String],
         completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
-
-        guard page > 0 && page < 128 else {
-            completion(.failure(.badParameter(("page", "\(page)"))))
-            return
-        }
-
-        guard pageSize > 0 && pageSize < 128 else {
-            completion(.failure(.badParameter(("pageSize", "\(pageSize)"))))
-            return
-        }
-
-        let parameters: [String: String] = [
-            "q": query,
-            "order": order.rawValue,
-            "sort": sort.rawValue,
-            "site": site,
-            "page": "\(page)",
-            "pageSize": "\(pageSize)",
-            "key": apiKey
-        ]
 
         networkService.getRequest(pathComponent: pathComponent, parameters: parameters) { result in
 
@@ -85,12 +60,20 @@ extension APIService where T == Question {
         sort: Sort = .votes,
         completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
 
-        fetchData(pathComponent: APIConstants.questionsComponent,
-                  query: query,
-                  page: page,
-                  pageSize: pageSize,
-                  order: order,
-                  sort: sort,
+        let parameters: [String: String] = [
+            "q": query,
+            "order": order.rawValue,
+            "sort": sort.rawValue,
+            "site": site,
+            "page": "\(page)",
+            "pageSize": "\(pageSize)",
+            "key": apiKey
+        ]
+
+        let pathComponent = APIConstants.questionsComponent
+
+        fetchData(pathComponent: pathComponent,
+                  parameters: parameters,
                   completion: completion)
     }
 }
@@ -105,14 +88,21 @@ extension APIService where T == Answer {
         sort: Sort = .votes,
         completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
 
-        fetchData(pathComponent: APIConstants.answersComponent,
-                  query: query,
-                  page: page,
-                  pageSize: pageSize,
-                  order: order,
-                  sort: sort,
+        let parameters: [String: String] = [
+            "order": order.rawValue,
+            "sort": sort.rawValue,
+            "site": site,
+            "page": "\(page)",
+            "pageSize": "\(pageSize)",
+            "filter": "withbody",
+            "key": apiKey
+        ]
+
+        let pathComponent = APIConstants
+            .answersComponent.replacingOccurrences(of: "{ids}", with: query)
+
+        fetchData(pathComponent: pathComponent,
+                  parameters: parameters,
                   completion: completion)
     }
 }
-
-// swiftlint:enable function_parameter_count

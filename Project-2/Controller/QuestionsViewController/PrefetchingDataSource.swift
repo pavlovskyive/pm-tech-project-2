@@ -109,6 +109,14 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
         }
     }
 
+    public func object(with indexPath: IndexPath) -> T? {
+        guard models.count > indexPath.row else {
+            return nil
+        }
+
+        return models[indexPath.row]
+    }
+
     // MARK: Private Methods
 
     private func resetData() {
