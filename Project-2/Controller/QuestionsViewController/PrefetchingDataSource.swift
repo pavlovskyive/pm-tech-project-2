@@ -154,3 +154,10 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
         fetchData(at: last)
     }
 }
+
+extension PrefetchingDataSource {
+
+    func getModel(at index: IndexPath) -> T? {
+        return models[index.item]
+    }
+}

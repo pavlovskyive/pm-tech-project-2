@@ -11,14 +11,14 @@ class ResultsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView?
 
-    let textAttachementProcessor = DefaultTextAttachmentProcessor()
-
-    let apiService = APIService()
-
     var questionID: Int?
     var page: Int = 1
 
-    private var question: APIResult<QuestionResultItem>? {
+    private let textAttachementProcessor = DefaultTextAttachmentProcessor()
+
+    private let apiService = APIService<Answer>()
+
+    private var question: APIResult<Answer>? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView?.reloadData()
@@ -31,10 +31,10 @@ class ResultsViewController: UIViewController {
 
         prepareCollectionView()
         fetchAnswers()
-
     }
 }
 
+// MARK: - Network fetches
 private extension ResultsViewController {
 
     func fetchAnswers() {
@@ -42,13 +42,13 @@ private extension ResultsViewController {
             return
         }
 
-        apiService.fetchQuestion(questionId: questionID, page: page) { [weak self] res in
+        apiService.fetchPage(query: "\(questionID)", page: page) { [weak self] res in
             guard let self = self else { return }
 
             switch res {
             case .failure(let error):
                 print(error)
-            case .success(var result):
+            case .success(let result):
                 for idx in result.items.indices {
                     result.items[idx].parseAttachements(with: self.textAttachementProcessor)
                 }
@@ -59,6 +59,7 @@ private extension ResultsViewController {
     }
 }
 
+// MARK: - Preparations
 private extension ResultsViewController {
 
     func prepareCollectionView() {

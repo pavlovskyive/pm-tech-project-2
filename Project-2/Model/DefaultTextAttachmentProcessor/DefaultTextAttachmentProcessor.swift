@@ -7,11 +7,11 @@
 
 import UIKit
 
-class DefaultTextAttachmentProcessor: TextAttachmentProcessor {
+class DefaultTextAttachmentProcessor: TextAttachmentPreloader {
 
     let networkService = NetworkService(baseURLString: "https://i.stack.imgur.com")
 
-    func parseAttachements(attrString: NSMutableAttributedString) -> NSMutableAttributedString {
+    func preloadAttachments(attrString: NSMutableAttributedString) -> NSMutableAttributedString {
         let fullLengthRange = NSRange(location: 0, length: attrString.length)
 
         attrString.enumerateAttributes(

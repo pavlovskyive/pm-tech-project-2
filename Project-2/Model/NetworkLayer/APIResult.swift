@@ -47,7 +47,7 @@ class Answer: APIResultContainable {
 
     var htmlAttributedBody: NSMutableAttributedString?
 
-    mutating func parseAttachements(with textProcessor: TextAttachmentProcessor) {
+    func parseAttachements(with textProcessor: TextAttachmentPreloader) {
         guard let data = body.data(using: .utf8) else {
             return
         }
@@ -61,6 +61,6 @@ class Answer: APIResultContainable {
             return
         }
 
-        htmlAttributedBody = textProcessor.parseAttachements(attrString: attrString)
+        htmlAttributedBody = textProcessor.preloadAttachments(attrString: attrString)
     }
 }

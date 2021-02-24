@@ -72,8 +72,9 @@ private extension QuestionsViewController {
     func prepareCollectionView() {
 
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: "QuestionCell", bundle: Bundle.main),
-                                forCellWithReuseIdentifier: "CellID")
+        let questionCellID = QuestionCell.reuseIdentifier
+        collectionView.register(UINib(nibName: questionCellID, bundle: Bundle.main),
+                                forCellWithReuseIdentifier: questionCellID)
 
         // Layout
         let size = NSCollectionLayoutSize(
@@ -106,5 +107,14 @@ extension QuestionsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let resultsViewController = ResultsViewController()
+
+        resultsViewController.questionID = dataSource?.getModel(at: indexPath)?.questionID
+
+        navigationController?.pushViewController(resultsViewController, animated: true)
     }
 }
