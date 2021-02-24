@@ -107,4 +107,23 @@ extension QuestionsViewController: UICollectionViewDelegate {
                         willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+
+        guard let question = dataSource?.object(with: indexPath) else {
+            return
+        }
+
+        print(question.questionID)
+
+        APIService<Answer>().fetchPage(query: "\(question.questionID)", page: 1) { result in
+            switch result {
+            case .success(let answer):
+                print(answer)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
