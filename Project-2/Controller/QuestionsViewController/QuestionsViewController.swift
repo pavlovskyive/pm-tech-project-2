@@ -94,7 +94,8 @@ private extension QuestionsViewController {
 
     func prepareDataSource() {
         dataSource = PrefetchingDataSource<Question, QuestionCell>(
-            collectionView: collectionView, completion: onFetchCompleted(error:))
+            collectionView: collectionView,
+            fetchStrategy: QuestionsStrategy(), completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
     }
@@ -117,7 +118,9 @@ extension QuestionsViewController: UICollectionViewDelegate {
 
         print(question.questionID)
 
-        APIService<Answer>().fetchPage(query: "\(question.questionID)", page: 1) { result in
+        APIService<Answer>(fetchStrategy: AnswersStrategy())
+            .fetchPage(query: "\(question.questionID)", page: 1) { result in
+
             switch result {
             case .success(let answer):
                 print(answer)
