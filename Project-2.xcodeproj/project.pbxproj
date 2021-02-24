@@ -24,7 +24,7 @@
 		885FF0C025E401D1000674A3 /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */; };
 		885FF0C425E40246000674A3 /* AnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885FF0C325E40246000674A3 /* AnswerCollectionViewCell.xib */; };
 		885FF0C825E40555000674A3 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0C725E40554000674A3 /* UIResponder.swift */; };
-		888EA38325E5342900EE0869 /* TextAttachmentProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA38225E5342900EE0869 /* TextAttachmentProcessor.swift */; };
+		888EA38325E5342900EE0869 /* DefaultTextAttachmentProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA38225E5342900EE0869 /* DefaultTextAttachmentProcessor.swift */; };
 		888EA39125E5CB6100EE0869 /* TextAttachmentProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA39025E5CB6100EE0869 /* TextAttachmentProcessor.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		885FF0C325E40246000674A3 /* AnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		885FF0C725E40554000674A3 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
-		888EA38225E5342900EE0869 /* TextAttachmentProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAttachmentProcessor.swift; sourceTree = "<group>"; };
+		888EA38225E5342900EE0869 /* DefaultTextAttachmentProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextAttachmentProcessor.swift; sourceTree = "<group>"; };
 		888EA39025E5CB6100EE0869 /* TextAttachmentProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAttachmentProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				888EA38F25E5CB5400EE0869 /* Protocols */,
-				885FF0C625E4054A000674A3 /* Extension */,
 				79249EBA25E01C1E00CBD0F6 /* Application */,
 				79249EB825E01C1200CBD0F6 /* Helper */,
 				79249EB725E01C0A00CBD0F6 /* Services */,
@@ -100,7 +99,7 @@
 		79249EB425E01BFC00CBD0F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				888EA38125E5341500EE0869 /* TextAttachementCache */,
+				888EA38125E5341500EE0869 /* DefaultTextAttachmentProcessor */,
 				796E358025E267330068FF89 /* NetworkLayer */,
 			);
 			path = Model;
@@ -146,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				796E358625E26D9D0068FF89 /* Data.swift */,
+				885FF0C725E40554000674A3 /* UIResponder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,20 +194,12 @@
 			path = AnswerCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		885FF0C625E4054A000674A3 /* Extension */ = {
+		888EA38125E5341500EE0869 /* DefaultTextAttachmentProcessor */ = {
 			isa = PBXGroup;
 			children = (
-				885FF0C725E40554000674A3 /* UIResponder.swift */,
+				888EA38225E5342900EE0869 /* DefaultTextAttachmentProcessor.swift */,
 			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		888EA38125E5341500EE0869 /* TextAttachementCache */ = {
-			isa = PBXGroup;
-			children = (
-				888EA38225E5342900EE0869 /* TextAttachmentProcessor.swift */,
-			);
-			path = TextAttachementCache;
+			path = DefaultTextAttachmentProcessor;
 			sourceTree = "<group>";
 		};
 		888EA38F25E5CB5400EE0869 /* Protocols */ = {
@@ -332,7 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				888EA39125E5CB6100EE0869 /* TextAttachmentProcessor.swift in Sources */,
-				888EA38325E5342900EE0869 /* TextAttachmentProcessor.swift in Sources */,
+				888EA38325E5342900EE0869 /* DefaultTextAttachmentProcessor.swift in Sources */,
 				796E357525E250040068FF89 /* NetworkService.swift in Sources */,
 				796E358725E26D9D0068FF89 /* Data.swift in Sources */,
 				796E358225E267550068FF89 /* APIResult.swift in Sources */,
