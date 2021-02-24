@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsViewController" customModule="Project_2" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="0Sx-bc-vzD" id="Xiw-NG-dBK"/>
                 <outlet property="collectionView" destination="evq-dW-c1C" id="ott-IA-CXN"/>
                 <outlet property="view" destination="iN0-l3-epB" id="E56-H1-PYA"/>
             </connections>
@@ -30,11 +31,16 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0Sx-bc-vzD">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="0Sx-bc-vzD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5aL-LC-bHW"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="evq-dW-c1C" secondAttribute="trailing" id="Gck-cW-Wao"/>
+                <constraint firstItem="0Sx-bc-vzD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LKB-OX-e0c"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="evq-dW-c1C" secondAttribute="bottom" id="Nyn-Bp-6ot"/>
                 <constraint firstItem="evq-dW-c1C" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="o6h-Aj-53Z"/>
                 <constraint firstItem="evq-dW-c1C" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ogt-GV-hKW"/>

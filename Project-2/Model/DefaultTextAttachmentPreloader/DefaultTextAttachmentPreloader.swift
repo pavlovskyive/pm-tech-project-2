@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DefaultTextAttachmentProcessor: TextAttachmentPreloader {
+class DefaultTextAttachmentPreloader: TextAttachmentPreloader {
 
     let networkService = NetworkService(baseURLString: "https://i.stack.imgur.com")
 
@@ -63,7 +63,7 @@ class DefaultTextAttachmentProcessor: TextAttachmentPreloader {
     }
 }
 
-private extension DefaultTextAttachmentProcessor {
+private extension DefaultTextAttachmentPreloader {
     func getBase64ImageAttrString(image: UIImage) -> NSAttributedString? {
         guard let imageData = image.pngData() else {
             return nil

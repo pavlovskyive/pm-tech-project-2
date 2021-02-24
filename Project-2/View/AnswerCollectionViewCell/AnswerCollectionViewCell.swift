@@ -16,6 +16,7 @@ class AnswerCollectionViewCell: UICollectionViewCell {
             bodyLabel?.attributedText = body
         }
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -32,11 +33,22 @@ class AnswerCollectionViewCell: UICollectionViewCell {
 private extension AnswerCollectionViewCell {
     func commonInit() {
         prepareBodyLabel()
-        backgroundColor = .orange
     }
 
     func prepareBodyLabel() {
         bodyLabel?.numberOfLines = 0
         bodyLabel?.lineBreakMode = .byWordWrapping
+    }
+}
+
+extension AnswerCollectionViewCell: Configurable {
+    func configure(with model: AnyObject?) {
+        guard let model = model as? Answer else {
+            return
+        }
+
+        let textPreloader = DefaultTextAttachmentPreloader()
+
+        bodyLabel?.attributedText = model.htmlAttributedBody
     }
 }

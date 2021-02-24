@@ -10,11 +10,13 @@ import UIKit
 class ResultsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 
     var questionID: Int?
-    var page: Int = 1
 
-    private let textAttachementProcessor = DefaultTextAttachmentProcessor()
+    private var dataSource: PrefetchingDataSource<Answer, AnswerCollectionViewCell>?
+
+    private let textAttachementProcessor = DefaultTextAttachmentPreloader()
 
     private let apiService = APIService<Answer>()
 
@@ -30,31 +32,41 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
 
         prepareCollectionView()
+        prepareDataSource()
         fetchAnswers()
     }
 }
 
-// MARK: - Network fetches
+// MARK: - Network
 private extension ResultsViewController {
 
     func fetchAnswers() {
-        guard let questionID = questionID else {
-            return
-        }
+        guard let questionID = questionID else { return }
 
-        apiService.fetchPage(query: "\(questionID)", page: page) { [weak self] res in
-            guard let self = self else { return }
+        activityIndicator?.startAnimating()
+        dataSource?.query = "\(questionID)"
+        dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
+    }
 
-            switch res {
-            case .failure(let error):
-                print(error)
-            case .success(let result):
-                for idx in result.items.indices {
-                    result.items[idx].parseAttachements(with: self.textAttachementProcessor)
-                }
-
-                self.question = result
+    func onFetchCompleted(error: Error?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, let activityIndicator = self.activityIndicator else {
+                return
             }
+
+            activityIndicator.stopAnimating()
+
+            guard let error = error else {
+                return
+            }
+
+            let alertController = UIAlertController(
+                title: "Error fetching data",
+                message: error.localizedDescription,
+                preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true)
         }
     }
 }
@@ -62,9 +74,19 @@ private extension ResultsViewController {
 // MARK: - Preparations
 private extension ResultsViewController {
 
+    func prepareDataSource() {
+        guard let collectionView = collectionView else {
+            return
+        }
+
+        dataSource = PrefetchingDataSource<Answer, AnswerCollectionViewCell>(
+            collectionView: collectionView, completion: onFetchCompleted)
+        collectionView.dataSource = dataSource
+        collectionView.prefetchDataSource = dataSource
+    }
+
     func prepareCollectionView() {
 
-        collectionView?.dataSource = self
         collectionView?.register(
             UINib(nibName: AnswerCollectionViewCell.reuseIdentifier, bundle: nil),
             forCellWithReuseIdentifier: AnswerCollectionViewCell.reuseIdentifier)
