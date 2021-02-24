@@ -8,44 +8,55 @@
 import UIKit
 
 class QuestionsViewController: UIViewController {
-
     // MARK: Outlets
-
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var ceneterYConstraint: NSLayoutConstraint!
+    private var isFirstSerch = true
     // MARK: Variables
-
+    let throtllerService: ThrotllerService = ThrotllerService<String>(1)
     private var dataSource: PrefetchingDataSource<Question, QuestionCell>?
 
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureSearchBar()
         prepareCollectionView()
         prepareDataSource()
     }
 
-    // MARK: Actions
-
-    @IBAction func searchButtonTapped(_ sender: Any) {
-        guard let text = searchBar.text else {
-            return
-        }
-        search(query: text)
-    }
 }
 
 // MARK: - Private Methods
 
 private extension QuestionsViewController {
-
+    @objc func textDidChange(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        throtllerService.receive(text)
+    }
+    
+    func doSearchBarAnimation() {
+        NSLayoutConstraint.deactivate([ceneterYConstraint])
+        UIView.animate(withDuration: 2) {[weak self] in
+            guard let self = self else { return }
+            let constant = -(self.view.bounds.height / 2 - 100)
+            self.ceneterYConstraint = self.searchBar.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,
+                                                                              constant: constant)
+            NSLayoutConstraint.activate([self.ceneterYConstraint])
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func search(query: String) {
         activityIndicator.startAnimating()
         dataSource?.query = query
         dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
+        guard isFirstSerch else { return }
+//        provideAnimation(for: searchBar, from: self)
+        doSearchBarAnimation()
+        isFirstSerch = false
     }
 
     func onFetchCompleted(error: Error?) {
@@ -97,6 +108,11 @@ private extension QuestionsViewController {
             collectionView: collectionView, completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
+    }
+    
+    func configureSearchBar() {
+        searchBar.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        throtllerService.add(throttledCallback: search(query:))
     }
 }
 

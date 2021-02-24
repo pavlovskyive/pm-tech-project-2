@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionsViewController" customModule="Project_2" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="OZB-bq-BwK" id="Zez-0C-m9f"/>
+                <outlet property="ceneterYConstraint" destination="3Sk-as-qKU" id="kCG-Gt-TJO"/>
                 <outlet property="collectionView" destination="xYt-GS-rS7" id="rB3-uX-Bnz"/>
                 <outlet property="searchBar" destination="5rF-Gy-AQ9" id="268-A7-Gg7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,39 +24,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xYt-GS-rS7">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewLayout key="collectionViewLayout" id="2Ge-it-e6W"/>
                 </collectionView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OZB-bq-BwK" userLabel="Activity Indicator">
-                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                    <rect key="frame" x="197" y="490" width="20" height="20"/>
                 </activityIndicatorView>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rF-Gy-AQ9">
-                    <rect key="frame" x="15" y="44" width="323" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search... " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rF-Gy-AQ9">
+                    <rect key="frame" x="20.5" y="426" width="373" height="54"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="29"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbf-St-Hjp">
-                    <rect key="frame" x="353" y="46" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="searchButtonTapped:" destination="-1" eventType="touchUpInside" id="e2E-4m-sQh"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Gbf-St-Hjp" firstAttribute="centerY" secondItem="5rF-Gy-AQ9" secondAttribute="centerY" id="BAB-pm-Cwd"/>
-                <constraint firstItem="Gbf-St-Hjp" firstAttribute="leading" secondItem="5rF-Gy-AQ9" secondAttribute="trailing" constant="15" id="Cd0-ZC-obE"/>
+                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="3Sk-as-qKU"/>
+                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.06" id="Nvk-QG-DIO"/>
                 <constraint firstItem="OZB-bq-BwK" firstAttribute="centerX" secondItem="xYt-GS-rS7" secondAttribute="centerX" id="SEE-3m-BJh"/>
                 <constraint firstItem="xYt-GS-rS7" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="VwK-Q1-vDE"/>
-                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="WTw-vo-eFc"/>
                 <constraint firstItem="xYt-GS-rS7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wg7-9C-sIQ"/>
+                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="aw6-B9-B7V"/>
+                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="cUS-Qu-3vX"/>
                 <constraint firstAttribute="bottom" secondItem="xYt-GS-rS7" secondAttribute="bottom" id="dCs-Td-KMR"/>
-                <constraint firstItem="xYt-GS-rS7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gpW-AQ-tQx"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gbf-St-Hjp" secondAttribute="trailing" constant="15" id="jEm-Xp-xeF"/>
-                <constraint firstItem="5rF-Gy-AQ9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tCQ-Bn-7hY"/>
+                <constraint firstItem="xYt-GS-rS7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="gpW-AQ-tQx"/>
                 <constraint firstItem="OZB-bq-BwK" firstAttribute="centerY" secondItem="xYt-GS-rS7" secondAttribute="centerY" id="uwZ-dD-zAN"/>
             </constraints>
             <point key="canvasLocation" x="18.840579710144929" y="108.48214285714285"/>
