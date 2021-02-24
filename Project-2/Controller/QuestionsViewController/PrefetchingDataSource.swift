@@ -47,15 +47,21 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
     private var pageSize = 15
 
     // Api service
-    private let apiService = APIService<Question>()
+    private let apiService: APIService<T>?
+
+    private let fetchStrategy: FetchStrategy
 
     // MARK: Lifecycle
 
     init(collectionView: UICollectionView,
+         fetchStrategy: FetchStrategy,
          completion: @escaping (Error?) -> Void) {
 
         self.collectionView = collectionView
         self.fetchCompletion = completion
+        self.fetchStrategy = fetchStrategy
+
+        apiService = APIService(fetchStrategy: self.fetchStrategy)
 
         super.init()
     }
@@ -79,7 +85,7 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
 
         isFetching = true
 
-        apiService.fetchPage(query: query, page: pageSize) { result in
+        apiService?.fetchPage(query: query, page: pageSize) { result in
             switch result {
             case .success(let apiResult):
                 DispatchQueue.main.async {
@@ -93,10 +99,7 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
                         paths.append(indexPath)
                     }
 
-                    guard let items = apiResult.items as? [T] else {
-                        self.fetchCompletion(NetworkError.badData)
-                        return
-                    }
+                    let items = apiResult.items
 
                     self.models.append(contentsOf: items)
                     self.collectionView?.insertItems(at: paths)
@@ -162,12 +165,5 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
             return
         }
         fetchData(at: last)
-    }
-}
-
-extension PrefetchingDataSource {
-
-    func getModel(at index: IndexPath) -> T? {
-        return models[index.item]
     }
 }

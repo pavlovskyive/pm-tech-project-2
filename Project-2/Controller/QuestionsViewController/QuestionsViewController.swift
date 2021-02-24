@@ -95,7 +95,8 @@ private extension QuestionsViewController {
 
     func prepareDataSource() {
         dataSource = PrefetchingDataSource<Question, QuestionCell>(
-            collectionView: collectionView, completion: onFetchCompleted(error:))
+            collectionView: collectionView,
+            fetchStrategy: QuestionsStrategy(), completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
     }
@@ -110,11 +111,23 @@ extension QuestionsViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
 
-        let resultsViewController = ResultsViewController()
+        guard let question = dataSource?.object(with: indexPath) else {
+            return
+        }
 
-        resultsViewController.questionID = dataSource?.getModel(at: indexPath)?.questionID
+        print(question.questionID)
 
-        navigationController?.pushViewController(resultsViewController, animated: true)
+        APIService<Answer>(fetchStrategy: AnswersStrategy())
+            .fetchPage(query: "\(question.questionID)", page: 1) { result in
+
+            switch result {
+            case .success(let answer):
+                print(answer)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
