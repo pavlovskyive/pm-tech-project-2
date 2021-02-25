@@ -51,6 +51,7 @@ extension QuestionsViewController: UISearchResultsUpdating {
 
 private extension QuestionsViewController {
     func search(query: String) {
+        print(query)
         activityIndicator.startAnimating()
         dataSource?.query = query
         dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
@@ -62,10 +63,14 @@ private extension QuestionsViewController {
     func doSearchBarAnimation() {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let viewsFrameHeight = self.view.frame.height
-        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height)
-        UIView.animate(withDuration: 3) {
-            self.view.layoutIfNeeded()
-        }
+        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 25)
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.view.layoutIfNeeded()
+            })
     }
 
     func onFetchCompleted(error: Error?) {
@@ -73,7 +78,8 @@ private extension QuestionsViewController {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
 
-            guard let error = error else {
+            guard let error = error as? NetworkError,
+                  error != .badData else {
                 return
             }
 
@@ -105,7 +111,7 @@ private extension QuestionsViewController {
 
         let section = NSCollectionLayoutSection(group: group)
 
-        section.contentInsets = NSDirectionalEdgeInsets(top: 44, leading: 5, bottom: 10, trailing: 5)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5)
         section.interGroupSpacing = 10
 
         let layout = UICollectionViewCompositionalLayout(section: section)

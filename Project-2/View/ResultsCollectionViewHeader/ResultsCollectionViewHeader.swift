@@ -54,7 +54,7 @@ extension ResultsCollectionViewHeader: Configurable {
         questionTitleLabel?.text = model.title
         questionScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
-        profileReputationLabel?.text = "\(model.owner.reputation)"
+        profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
         bodyLabel?.attributedText = model.htmlAttributedString
     }
 }

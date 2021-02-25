@@ -50,15 +50,17 @@ private extension ResultsViewController {
 
             activityIndicator.stopAnimating()
 
-            if let error = error {
-                let alertController = UIAlertController(
-                    title: "Error fetching data",
-                    message: error.localizedDescription,
-                    preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alertController, animated: true)
+            guard let error = error as? NetworkError,
+                  error != .badData else {
+                return
             }
+            let alertController = UIAlertController(
+                title: "Error fetching data",
+                message: error.localizedDescription,
+                preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true)
         }
     }
 }

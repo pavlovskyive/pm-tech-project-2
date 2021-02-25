@@ -50,6 +50,6 @@ extension AnswerCollectionViewCell: Configurable {
 
         answerScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
-        profileReputationLabel?.text = "\(model.owner.reputation)"
+        profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
     }
 }
