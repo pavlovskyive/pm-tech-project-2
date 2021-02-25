@@ -14,18 +14,9 @@ class ResultsViewController: UIViewController {
 
     private var dataSource: PrefetchingDataSource<Answer, AnswerCollectionViewCell>?
 
-    private let textAttachementProcessor = DefaultTextAttachmentPreloader()
+    private var apiService: APIService<Answer>?
 
-    private let apiService = APIService<Answer>()
-
-    var question: APIResult<Answer>? {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                
-                self?.collectionView?.reloadData()
-            }
-        }
-    }
+    var question: Question?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +31,11 @@ class ResultsViewController: UIViewController {
 private extension ResultsViewController {
 
     func fetchAnswers() {
+        guard let question = question else { return }
+
+        activityIndicator?.startAnimating()
+        dataSource?.query = "\(question.questionID)"
+        dataSource?.fetchData(at: IndexPath(item: 0, section: 0))
     }
 
     func onFetchCompleted(error: Error?) {
@@ -50,17 +46,15 @@ private extension ResultsViewController {
 
             activityIndicator.stopAnimating()
 
-            guard let error = error else {
-                return
+            if let error = error {
+                let alertController = UIAlertController(
+                    title: "Error fetching data",
+                    message: error.localizedDescription,
+                    preferredStyle: .alert)
+
+                alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alertController, animated: true)
             }
-
-            let alertController = UIAlertController(
-                title: "Error fetching data",
-                message: error.localizedDescription,
-                preferredStyle: .alert)
-
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alertController, animated: true)
         }
     }
 }
@@ -74,13 +68,13 @@ private extension ResultsViewController {
         }
 
         dataSource = PrefetchingDataSource<Answer, AnswerCollectionViewCell>(
-            collectionView: collectionView, completion: onFetchCompleted)
+            collectionView: collectionView, fetchStrategy: AnswersStrategy(), completion: onFetchCompleted)
         collectionView.dataSource = dataSource
+        collectionView.delegate = self
         collectionView.prefetchDataSource = dataSource
     }
 
     func prepareCollectionView() {
-
         collectionView?.register(
             UINib(nibName: AnswerCollectionViewCell.reuseIdentifier, bundle: nil),
             forCellWithReuseIdentifier: AnswerCollectionViewCell.reuseIdentifier)
@@ -107,26 +101,9 @@ private extension ResultsViewController {
     }
 }
 
-// MARK: - UICollectionViewDataSource
-extension ResultsViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        question?.items.count ?? 0
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: AnswerCollectionViewCell.reuseIdentifier,
-                for: indexPath) as? AnswerCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-
-        let answer = question?.items[indexPath.item]
-        cell.body = answer?.htmlAttributedBody
-
-        return cell
+extension ResultsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
     }
 }

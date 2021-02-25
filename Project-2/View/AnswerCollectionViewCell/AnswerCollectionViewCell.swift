@@ -47,8 +47,6 @@ extension AnswerCollectionViewCell: Configurable {
             return
         }
 
-        let textPreloader = DefaultTextAttachmentPreloader()
-
         bodyLabel?.attributedText = model.htmlAttributedBody
     }
 }

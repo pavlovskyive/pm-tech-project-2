@@ -85,7 +85,7 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
 
         isFetching = true
 
-        apiService?.fetchPage(query: query, page: pageSize) { result in
+        apiService?.fetchPage(query: query, page: currentPage) { result in
             switch result {
             case .success(let apiResult):
                 DispatchQueue.main.async {

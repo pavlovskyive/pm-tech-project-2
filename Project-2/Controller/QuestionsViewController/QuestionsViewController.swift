@@ -117,17 +117,8 @@ extension QuestionsViewController: UICollectionViewDelegate {
             return
         }
 
-        print(question.questionID)
-
-        APIService<Answer>(fetchStrategy: AnswersStrategy())
-            .fetchPage(query: "\(question.questionID)", page: 1) { result in
-
-            switch result {
-            case .success(let answer):
-                print(answer)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        let resultsVC = ResultsViewController()
+        resultsVC.question = question
+        navigationController?.pushViewController(resultsVC, animated: true)
     }
 }

@@ -45,22 +45,16 @@ class Answer: APIResultContainable {
         case body
     }
 
-    var htmlAttributedBody: NSMutableAttributedString?
-
-    func parseAttachements(with textProcessor: TextAttachmentPreloader) {
+    var htmlAttributedBody: NSAttributedString? {
         guard let data = body.data(using: .utf8) else {
-            return
+            return nil
         }
 
-        guard let attrString = try? NSMutableAttributedString(
+        return try? NSAttributedString(
             data: data,
             options: [
                 .documentType: NSAttributedString.DocumentType.html
             ],
-            documentAttributes: nil) else {
-            return
-        }
-
-        htmlAttributedBody = textProcessor.preloadAttachments(attrString: attrString)
+            documentAttributes: nil)
     }
 }
