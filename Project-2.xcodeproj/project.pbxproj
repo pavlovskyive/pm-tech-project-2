@@ -32,8 +32,8 @@
 		888EA3E125E79EA400EE0869 /* ResultsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3E025E79EA400EE0869 /* ResultsCollectionViewHeader.swift */; };
 		888EA3E725E7A2D500EE0869 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3E625E7A2D500EE0869 /* Owner.swift */; };
 		888EA3EA25E7A31300EE0869 /* ResultsCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */; };
-		888EA3ED25E7A50200EE0869 /* BodyContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3EC25E7A50200EE0869 /* BodyContaining.swift */; };
 		888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */; };
+		888EA40B25E7E14E00EE0869 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA40A25E7E14E00EE0869 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +64,8 @@
 		888EA3E025E79EA400EE0869 /* ResultsCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewHeader.swift; sourceTree = "<group>"; };
 		888EA3E625E7A2D500EE0869 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCollectionViewHeader.xib; sourceTree = "<group>"; };
-		888EA3EC25E7A50200EE0869 /* BodyContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContaining.swift; sourceTree = "<group>"; };
 		888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableSupplementaryView.swift; sourceTree = "<group>"; };
+		888EA40A25E7E14E00EE0869 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				79122BC925E559B5006D937C /* Configurable.swift */,
-				888EA3EC25E7A50200EE0869 /* BodyContaining.swift */,
 				888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */,
 			);
 			path = Protocols;
@@ -181,6 +180,7 @@
 			children = (
 				796E358625E26D9D0068FF89 /* Data.swift */,
 				885FF0C725E40554000674A3 /* UIResponder.swift */,
+				888EA40A25E7E14E00EE0869 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -367,13 +367,13 @@
 			files = (
 				79122BCA25E559B5006D937C /* Configurable.swift in Sources */,
 				791EB6EC25E404B300704123 /* QuestionsViewController.swift in Sources */,
+				888EA40B25E7E14E00EE0869 /* String.swift in Sources */,
 				796E357525E250040068FF89 /* NetworkService.swift in Sources */,
 				796E358725E26D9D0068FF89 /* Data.swift in Sources */,
 				796E358225E267550068FF89 /* APIResult.swift in Sources */,
 				885FF0AD25E3EE18000674A3 /* ResultsViewController.swift in Sources */,
 				888EA3E125E79EA400EE0869 /* ResultsCollectionViewHeader.swift in Sources */,
 				885FF0C825E40555000674A3 /* UIResponder.swift in Sources */,
-				888EA3ED25E7A50200EE0869 /* BodyContaining.swift in Sources */,
 				79122BB825E50AB1006D937C /* PrefetchingDataSource.swift in Sources */,
 				796E357B25E259C30068FF89 /* APIConstants.swift in Sources */,
 				888EA3D325E67E1D00EE0869 /* QuestionCell.swift in Sources */,

@@ -22,7 +22,7 @@ protocol APIResultContainable: Codable {
 
 }
 
-class Question: APIResultContainable, BodyContaining {
+class Question: APIResultContainable {
     let isAnswered: Bool
     let score: Int
     let questionID: Int
@@ -40,7 +40,7 @@ class Question: APIResultContainable, BodyContaining {
     }
 }
 
-class Answer: APIResultContainable, BodyContaining {
+class Answer: APIResultContainable {
     let isAccepted: Bool
     var body: String
     var score: Int

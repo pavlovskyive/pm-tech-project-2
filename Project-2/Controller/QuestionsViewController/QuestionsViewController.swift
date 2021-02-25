@@ -106,7 +106,8 @@ private extension QuestionsViewController {
 
 extension QuestionsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
     }
 
@@ -116,11 +117,6 @@ extension QuestionsViewController: UICollectionViewDelegate {
         guard let question = dataSource?.object(with: indexPath) else {
             return
         }
-
-        print(question.questionID)
-
-        APIService<AnswersStrategy>()
-            .fetchPage(query: "\(question.questionID)", page: 1) { result in
 
         let resultsVC = ResultsViewController()
         resultsVC.question = question
