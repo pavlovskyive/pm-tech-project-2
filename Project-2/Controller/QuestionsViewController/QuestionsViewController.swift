@@ -17,7 +17,7 @@ class QuestionsViewController: UIViewController {
 
     // MARK: Variables
 
-    private var dataSource: PrefetchingDataSource<Question, QuestionCell>?
+    private var dataSource: PrefetchingDataSource<QuestionsStrategy, QuestionCell>?
 
     // MARK: Lifecycle
 
@@ -93,9 +93,9 @@ private extension QuestionsViewController {
     }
 
     func prepareDataSource() {
-        dataSource = PrefetchingDataSource<Question, QuestionCell>(
+        dataSource = PrefetchingDataSource<QuestionsStrategy, QuestionCell>(
             collectionView: collectionView,
-            fetchStrategy: QuestionsStrategy(), completion: onFetchCompleted(error:))
+            completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
     }
@@ -118,7 +118,7 @@ extension QuestionsViewController: UICollectionViewDelegate {
 
         print(question.questionID)
 
-        APIService<Answer>(fetchStrategy: AnswersStrategy())
+        APIService<AnswersStrategy>()
             .fetchPage(query: "\(question.questionID)", page: 1) { result in
 
             switch result {
