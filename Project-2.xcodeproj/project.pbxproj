@@ -22,6 +22,7 @@
 		796E357E25E25AEE0068FF89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E357D25E25AEE0068FF89 /* APIService.swift */; };
 		796E358225E267550068FF89 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358125E267550068FF89 /* APIResult.swift */; };
 		796E358725E26D9D0068FF89 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358625E26D9D0068FF89 /* Data.swift */; };
+		AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE358D3A25E579DD00F0116C /* ThrotllerService.swift */; };
 		79CEA7E725E7D8620097ECC9 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */; };
 		79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */; };
 		885FF0AD25E3EE18000674A3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */; };
@@ -55,6 +56,7 @@
 		796E357D25E25AEE0068FF89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		796E358125E267550068FF89 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		796E358625E26D9D0068FF89 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		AE358D3A25E579DD00F0116C /* ThrotllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrotllerService.swift; sourceTree = "<group>"; };
 		79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				796E357425E250040068FF89 /* NetworkService.swift */,
 				796E357D25E25AEE0068FF89 /* APIService.swift */,
+				AE358D3A25E579DD00F0116C /* ThrotllerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				79122BCA25E559B5006D937C /* Configurable.swift in Sources */,
 				791EB6EC25E404B300704123 /* QuestionsViewController.swift in Sources */,
+				AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */,
 				796E357525E250040068FF89 /* NetworkService.swift in Sources */,
 				796E358725E26D9D0068FF89 /* Data.swift in Sources */,
 				796E358225E267550068FF89 /* APIResult.swift in Sources */,
@@ -529,14 +533,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87N7QPTHS6;
+				DEVELOPMENT_TEAM = UPWXFVVHLN;
 				INFOPLIST_FILE = "Project-2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beaxhem.Project-2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmtechacademy.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -551,6 +555,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UPWXFVVHLN;
+				DEVELOPMENT_TEAM = G66XPV3HVM;
 				DEVELOPMENT_TEAM = 87N7QPTHS6;
 				INFOPLIST_FILE = "Project-2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -558,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beaxhem.Project-2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmtechacademy.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

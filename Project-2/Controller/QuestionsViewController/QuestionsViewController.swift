@@ -8,44 +8,69 @@
 import UIKit
 
 class QuestionsViewController: UIViewController {
-
     // MARK: Outlets
-
-    @IBOutlet weak var searchBar: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var centerY: NSLayoutConstraint!
+    @IBOutlet weak var centerX: NSLayoutConstraint!
+    private var isFirstSerch = true
     // MARK: Variables
-
+    let throtllerService: ThrotllerService = ThrotllerService<String>(1)
     private var dataSource: PrefetchingDataSource<QuestionsStrategy, QuestionCell>?
 
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        throtllerService.add(throttledCallback: search(query:))
+        searchBar.delegate = self
         prepareCollectionView()
         prepareDataSource()
+
     }
 
-    // MARK: Actions
+}
 
-    @IBAction func searchButtonTapped(_ sender: Any) {
-        guard let text = searchBar.text else {
-            return
-        }
-        search(query: text)
+extension QuestionsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let text = searchBar.text else { return }
+        throtllerService.receive(text)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension QuestionsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        throtllerService.receive(text)
     }
 }
 
 // MARK: - Private Methods
 
 private extension QuestionsViewController {
-
     func search(query: String) {
+        print(query)
         activityIndicator.startAnimating()
         dataSource?.query = query
         dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
+        guard isFirstSerch else { return }
+        doSearchBarAnimation()
+        isFirstSerch = false
+    }
+
+    func doSearchBarAnimation() {
+        let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
+        let viewsFrameHeight = self.view.frame.height
+        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 25)
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                self.view.layoutIfNeeded()
+            })
     }
 
     func onFetchCompleted(error: Error?) {
@@ -53,7 +78,8 @@ private extension QuestionsViewController {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
 
-            guard let error = error else {
+            guard let error = error as? NetworkError,
+                  error != .badData else {
                 return
             }
 
@@ -70,7 +96,6 @@ private extension QuestionsViewController {
     // MARK: Preparations
 
     func prepareCollectionView() {
-
         collectionView.delegate = self
         let questionCellID = QuestionCell.reuseIdentifier
         collectionView.register(UINib(nibName: questionCellID, bundle: Bundle.main),
@@ -86,11 +111,12 @@ private extension QuestionsViewController {
 
         let section = NSCollectionLayoutSection(group: group)
 
-        section.contentInsets = NSDirectionalEdgeInsets(top: 44, leading: 5, bottom: 10, trailing: 5)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5)
         section.interGroupSpacing = 10
 
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout
+        collectionView.keyboardDismissMode = .onDrag
     }
 
     func prepareDataSource() {

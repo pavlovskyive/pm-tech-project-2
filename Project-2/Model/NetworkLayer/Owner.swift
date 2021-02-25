@@ -8,7 +8,7 @@
 import Foundation
 
 struct Owner: Codable {
-    var reputation: Int
+    var reputation: Int?
     var name: String
 
     enum CodingKeys: String, CodingKey {
