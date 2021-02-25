@@ -9,10 +9,11 @@ import UIKit
 
 class QuestionsViewController: UIViewController {
     // MARK: Outlets
-    @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var ceneterYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var centerY: NSLayoutConstraint!
+    @IBOutlet weak var centerX: NSLayoutConstraint!
     private var isFirstSerch = true
     // MARK: Variables
     let throtllerService: ThrotllerService = ThrotllerService<String>(1)
@@ -22,41 +23,49 @@ class QuestionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSearchBar()
+        throtllerService.add(throttledCallback: search(query:))
+        searchBar.delegate = self
         prepareCollectionView()
         prepareDataSource()
     }
 
 }
 
-// MARK: - Private Methods
-
-private extension QuestionsViewController {
-    @objc func textDidChange(_ sender: UITextField) {
-        guard let text = sender.text else { return }
+extension QuestionsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let text = searchBar.text else { return }
+        print(text)
         throtllerService.receive(text)
     }
-    
-    func doSearchBarAnimation() {
-        NSLayoutConstraint.deactivate([ceneterYConstraint])
-        UIView.animate(withDuration: 2) {[weak self] in
-            guard let self = self else { return }
-            let constant = -(self.view.bounds.height / 2 - 100)
-            self.ceneterYConstraint = self.searchBar.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,
-                                                                              constant: constant)
-            NSLayoutConstraint.activate([self.ceneterYConstraint])
-            self.view.layoutIfNeeded()
-        }
+}
+
+// MARK: - UISearchResultsUpdating
+extension QuestionsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        throtllerService.receive(text)
     }
+}
+
+// MARK: - Private Methods
+
+private extension QuestionsViewController {    
     
     func search(query: String) {
         activityIndicator.startAnimating()
         dataSource?.query = query
         dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
         guard isFirstSerch else { return }
-//        provideAnimation(for: searchBar, from: self)
         doSearchBarAnimation()
         isFirstSerch = false
+    }
+    
+    func doSearchBarAnimation() {
+        let frame = self.view.safeAreaLayoutGuide.layoutFrame
+        UIView.animate(withDuration: 3) {
+            self.centerY.constant = -self.view.frame.height / 2 + (self.view.frame.height - frame.height)
+            self.view.layoutIfNeeded()
+        }
     }
 
     func onFetchCompleted(error: Error?) {
@@ -108,11 +117,6 @@ private extension QuestionsViewController {
             collectionView: collectionView, completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
-    }
-    
-    func configureSearchBar() {
-        searchBar.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
-        throtllerService.add(throttledCallback: search(query:))
     }
 }
 
