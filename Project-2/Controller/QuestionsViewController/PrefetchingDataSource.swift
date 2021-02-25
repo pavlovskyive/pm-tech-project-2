@@ -8,7 +8,7 @@
 import UIKit
 
 // swiftlint:disable line_length
-class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching where CellClass: Configurable {
+class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching where CellClass: Configurable {
     // swiftlint:enable line_length
 
     // MARK: Public Variables
@@ -30,7 +30,7 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
     private var margin = 20
 
     // Model
-    private var models = [T]()
+    private var models = [Strategy.Model]()
 
     // CollectionView Link
     private weak var collectionView: UICollectionView?
@@ -51,21 +51,17 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
     private var pageSize = 15
 
     // Api service
-    private let apiService: APIService<T>?
-
-    private let fetchStrategy: FetchStrategy
+    private let apiService: APIService<Strategy>?
 
     // MARK: Lifecycle
 
     init(collectionView: UICollectionView,
-         fetchStrategy: FetchStrategy,
          completion: @escaping (Error?) -> Void) {
 
         self.collectionView = collectionView
         self.fetchCompletion = completion
-        self.fetchStrategy = fetchStrategy
 
-        apiService = APIService(fetchStrategy: self.fetchStrategy)
+        apiService = APIService<Strategy>()
 
         super.init()
     }
@@ -116,7 +112,7 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
         }
     }
 
-    public func object(with indexPath: IndexPath) -> T? {
+    public func object(with indexPath: IndexPath) -> Strategy.Model? {
         guard models.count > indexPath.row else {
             return nil
         }
