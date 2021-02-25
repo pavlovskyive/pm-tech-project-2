@@ -18,7 +18,7 @@ public class ThrotllerService<T> {
         self.interval = interval
         self.queue = queue
     }
-    
+
     public func receive(_ value: T) {
         self.value = value
         guard timeStamp == nil else { return }

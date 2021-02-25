@@ -51,16 +51,6 @@ extension QuestionsViewController: UISearchResultsUpdating {
 // MARK: - Private Methods
 
 private extension QuestionsViewController {
-    func setUpCollectionViewConstraint() {
-        NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            self.collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            self.collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        self.collectionView.layoutIfNeeded()
-    }
-    
     func search(query: String) {
         activityIndicator.startAnimating()
         dataSource?.query = query
@@ -69,10 +59,11 @@ private extension QuestionsViewController {
         doSearchBarAnimation()
         isFirstSerch = false
     }
-    
+
     func doSearchBarAnimation() {
-        let frame = self.view.safeAreaLayoutGuide.layoutFrame
-        self.centerY.constant = -self.view.frame.height / 2 + (self.view.frame.height - frame.height)
+        let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
+        let viewsFrameHeight = self.view.frame.height
+        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height)
         UIView.animate(withDuration: 3) {
             self.view.layoutIfNeeded()
         }
@@ -100,7 +91,6 @@ private extension QuestionsViewController {
     // MARK: Preparations
 
     func prepareCollectionView() {
-
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "QuestionCell", bundle: Bundle.main),
                                 forCellWithReuseIdentifier: "CellID")
@@ -120,6 +110,7 @@ private extension QuestionsViewController {
 
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout
+        collectionView.keyboardDismissMode = .onDrag
     }
 
     func prepareDataSource() {
