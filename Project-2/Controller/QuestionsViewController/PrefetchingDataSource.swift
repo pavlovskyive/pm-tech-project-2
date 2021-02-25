@@ -20,6 +20,10 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
         }
     }
 
+    public var headerConfig: AnyObject?
+
+    public var headerReusableClass: ConfigurableSupplementaryView.Type?
+
     // MARK: Private Properties
 
     // Fetching margin (meaning we fetch data for 20 cells in advance for smooth scrolling)
@@ -156,6 +160,32 @@ class PrefetchingDataSource<T: APIResultContainable, CellClass: UICollectionView
         cell.configure(with: model as AnyObject)
 
         return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerClass = headerReusableClass else {
+                return UICollectionReusableView()
+            }
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: headerClass.reuseIdentifier,
+                    for: indexPath) as? ConfigurableSupplementaryView else {
+
+                return UICollectionReusableView()
+            }
+            headerView.configure(with: headerConfig)
+
+            return headerView
+        default:
+            assert(false, "Invalid element type")
+        }
     }
 
     // MARK: UICollectionViewDataSourcePrefetching

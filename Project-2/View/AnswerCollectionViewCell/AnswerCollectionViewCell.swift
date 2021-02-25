@@ -44,7 +44,7 @@ extension AnswerCollectionViewCell: Configurable {
             return
         }
 
-        bodyLabel?.attributedText = model.htmlAttributedBody
+        bodyLabel?.attributedText = model.htmlAttributedString
         answerScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation)"

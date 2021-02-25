@@ -25,6 +25,12 @@ class ResultsViewController: UIViewController {
         prepareDataSource()
         fetchAnswers()
     }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
 }
 
 // MARK: - Network
@@ -68,7 +74,12 @@ private extension ResultsViewController {
         }
 
         dataSource = PrefetchingDataSource<Answer, AnswerCollectionViewCell>(
-            collectionView: collectionView, fetchStrategy: AnswersStrategy(), completion: onFetchCompleted)
+            collectionView: collectionView,
+            fetchStrategy: AnswersStrategy(),
+            completion: onFetchCompleted(error:))
+        dataSource?.headerConfig = question
+        dataSource?.headerReusableClass = ResultsCollectionViewHeader.self
+
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         collectionView.prefetchDataSource = dataSource
@@ -78,6 +89,11 @@ private extension ResultsViewController {
         collectionView?.register(
             UINib(nibName: AnswerCollectionViewCell.reuseIdentifier, bundle: nil),
             forCellWithReuseIdentifier: AnswerCollectionViewCell.reuseIdentifier)
+        collectionView?.register(
+            UINib(nibName: ResultsCollectionViewHeader.reuseIdentifier, bundle: nil),
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ResultsCollectionViewHeader.reuseIdentifier)
+
         collectionView?.contentInset.top = 10
 
         setLayout()
@@ -96,7 +112,20 @@ private extension ResultsViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         section.interGroupSpacing = 20
 
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+            heightDimension: NSCollectionLayoutDimension.estimated(200)
+        )
+
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+
+        section.boundarySupplementaryItems = [header]
         let layout = UICollectionViewCompositionalLayout(section: section)
+
         collectionView?.collectionViewLayout = layout
     }
 }

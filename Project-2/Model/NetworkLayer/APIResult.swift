@@ -22,31 +22,25 @@ protocol APIResultContainable: Codable {
 
 }
 
-class Question: APIResultContainable {
+class Question: APIResultContainable, BodyContaining {
     let isAnswered: Bool
     let score: Int
     let questionID: Int
     let title: String
+    let owner: Owner
+    var body: String
 
     enum CodingKeys: String, CodingKey {
         case isAnswered = "is_answered"
         case score
         case questionID = "question_id"
         case title
+        case owner
+        case body
     }
 }
 
-struct Owner: Codable {
-    var reputation: Int
-    var name: String
-
-    enum CodingKeys: String, CodingKey {
-        case reputation
-        case name = "display_name"
-    }
-}
-
-class Answer: APIResultContainable {
+class Answer: APIResultContainable, BodyContaining {
     let isAccepted: Bool
     var body: String
     var score: Int
@@ -57,36 +51,5 @@ class Answer: APIResultContainable {
         case body
         case score
         case owner
-    }
-
-    var htmlAttributedBody: NSAttributedString? {
-        let body = """
-        <!doctype html>
-        <html>
-            <style>
-                p {
-                    font-family: '-apple-system', 'HelveticaNeue';
-                    font-size: 14
-                }
-                code {
-                    background-color: #f2f2f2;
-                }
-            </style>
-            <body>
-                \(self.body)
-            </body>
-        </html>
-        """
-
-        guard let data = body.data(using: .utf8) else {
-            return nil
-        }
-
-        return try? NSAttributedString(
-            data: data,
-            options: [
-                .documentType: NSAttributedString.DocumentType.html
-            ],
-            documentAttributes: nil)
     }
 }

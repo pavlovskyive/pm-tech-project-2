@@ -37,7 +37,7 @@ struct QuestionsStrategy: FetchStrategy {
     }
 
     var additionalParameters: [String: String] {
-        [:]
+        ["filter": "withbody"]
     }
 }
 
