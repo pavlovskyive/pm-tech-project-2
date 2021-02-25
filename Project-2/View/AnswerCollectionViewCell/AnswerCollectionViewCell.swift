@@ -10,12 +10,9 @@ import UIKit
 class AnswerCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var bodyLabel: UILabel?
-
-    var body: NSAttributedString? {
-        didSet {
-            bodyLabel?.attributedText = body
-        }
-    }
+    @IBOutlet weak var answerScoreLabel: UILabel?
+    @IBOutlet weak var profileNameLabel: UILabel?
+    @IBOutlet weak var profileReputationLabel: UILabel?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,5 +45,8 @@ extension AnswerCollectionViewCell: Configurable {
         }
 
         bodyLabel?.attributedText = model.htmlAttributedBody
+        answerScoreLabel?.text = "\(model.score)"
+        profileNameLabel?.text = model.owner.name
+        profileReputationLabel?.text = "\(model.owner.reputation)"
     }
 }
