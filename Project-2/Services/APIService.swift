@@ -17,7 +17,6 @@ typealias FetchPageParameters<T: APIResultContainable> = (
 
 typealias FetchDataParameters<T: APIResultContainable> = (
     pathComponent: String,
-    additionalParameters: [String: String]?,
     fetchPageParameters: FetchPageParameters<T>)
 
 public enum Order: String {
@@ -51,7 +50,6 @@ struct QuestionsStrategy: FetchStrategy {
         let pathComponent = APIConstants.questionsComponent
 
         return (pathComponent: pathComponent,
-                additionalParameters: nil,
                 fetchPageParameters: fetchPageParameters)
     }
 }
@@ -69,7 +67,6 @@ struct AnswersStrategy: FetchStrategy {
         let pathComponent = APIConstants.answersComponent.replacingOccurrences(of: "{ids}", with: query)
 
         return (pathComponent: pathComponent,
-                additionalParameters: ["filter": "withbody"],
                 fetchPageParameters: fetchPageParameters)
     }
 }
@@ -93,13 +90,14 @@ class APIService<T: FetchStrategy> {
         sort: Sort = .votes,
         completion: @escaping (Result<APIResult<Model>, NetworkError>) -> Void) {
 
-        var parameters: [String: String] = [
+        let parameters: [String: String] = [
             "q": query,
             "order": order.rawValue,
             "sort": sort.rawValue,
             "site": site,
             "page": "\(page)",
             "pageSize": "\(pageSize)",
+            "filter": "withbody",
             "key": apiKey
         ]
 
@@ -112,8 +110,6 @@ class APIService<T: FetchStrategy> {
             completion: completion)
 
         let fetchDataParameters = fetchStrategy.adaptFetch(fetchPageParameters: fetchPageParameters)
-
-        parameters.merge(fetchDataParameters.additionalParameters ?? [:]) { (parameters, _) in parameters }
 
         fetchData(pathComponent: fetchDataParameters.pathComponent,
                   parameters: parameters,

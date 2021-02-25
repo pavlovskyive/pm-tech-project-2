@@ -20,6 +20,10 @@ class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionView
         }
     }
 
+    public var headerConfig: AnyObject?
+
+    public var headerReusableClass: ConfigurableSupplementaryView.Type?
+
     // MARK: Private Properties
 
     // Fetching margin (meaning we fetch data for 20 cells in advance for smooth scrolling)
@@ -81,7 +85,7 @@ class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionView
 
         isFetching = true
 
-        apiService?.fetchPage(query: query, page: pageSize) { result in
+        apiService?.fetchPage(query: query, page: currentPage) { result in
             switch result {
             case .success(let apiResult):
                 DispatchQueue.main.async {
@@ -141,8 +145,10 @@ class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath) as? CellClass else {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellClass.reuseIdentifier,
+                for: indexPath) as? CellClass else {
+
             fatalError("Could not cast cell")
         }
 
@@ -150,6 +156,32 @@ class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionView
         cell.configure(with: model as AnyObject)
 
         return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerClass = headerReusableClass else {
+                return UICollectionReusableView()
+            }
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: headerClass.reuseIdentifier,
+                    for: indexPath) as? ConfigurableSupplementaryView else {
+
+                return UICollectionReusableView()
+            }
+            headerView.configure(with: headerConfig)
+
+            return headerView
+        default:
+            assert(false, "Invalid element type")
+        }
     }
 
     // MARK: UICollectionViewDataSourcePrefetching
