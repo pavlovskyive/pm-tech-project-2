@@ -22,9 +22,10 @@
 		796E357E25E25AEE0068FF89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E357D25E25AEE0068FF89 /* APIService.swift */; };
 		796E358225E267550068FF89 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358125E267550068FF89 /* APIResult.swift */; };
 		796E358725E26D9D0068FF89 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358625E26D9D0068FF89 /* Data.swift */; };
-		AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE358D3A25E579DD00F0116C /* ThrotllerService.swift */; };
 		79CEA7E725E7D8620097ECC9 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */; };
 		79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */; };
+		79CEA83F25E841440097ECC9 /* DetailedAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CEA83D25E841440097ECC9 /* DetailedAnswerViewController.swift */; };
+		79CEA84025E841440097ECC9 /* DetailedAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CEA83E25E841440097ECC9 /* DetailedAnswerViewController.xib */; };
 		885FF0AD25E3EE18000674A3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */; };
 		885FF0B325E3FC98000674A3 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885FF0B225E3FC98000674A3 /* ResultsViewController.xib */; };
 		885FF0C025E401D1000674A3 /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */; };
@@ -36,6 +37,7 @@
 		888EA3ED25E7A50200EE0869 /* BodyContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3EC25E7A50200EE0869 /* BodyContaining.swift */; };
 		888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */; };
 		88C21C5F25E7F66000FAF75F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C21C5E25E7F66000FAF75F /* String.swift */; };
+		AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE358D3A25E579DD00F0116C /* ThrotllerService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +58,10 @@
 		796E357D25E25AEE0068FF89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		796E358125E267550068FF89 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		796E358625E26D9D0068FF89 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		AE358D3A25E579DD00F0116C /* ThrotllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrotllerService.swift; sourceTree = "<group>"; };
 		79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
+		79CEA83D25E841440097ECC9 /* DetailedAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAnswerViewController.swift; sourceTree = "<group>"; };
+		79CEA83E25E841440097ECC9 /* DetailedAnswerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedAnswerViewController.xib; sourceTree = "<group>"; };
 		885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		885FF0B225E3FC98000674A3 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
 		885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		888EA3EC25E7A50200EE0869 /* BodyContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContaining.swift; sourceTree = "<group>"; };
 		888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableSupplementaryView.swift; sourceTree = "<group>"; };
 		88C21C5E25E7F66000FAF75F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		AE358D3A25E579DD00F0116C /* ThrotllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrotllerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		79249EB525E01BFF00CBD0F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				79CEA83C25E841120097ECC9 /* DetailedAnswer */,
 				885FF0B025E3FC7C000674A3 /* ResultsView */,
 				791EB6E925E4049500704123 /* QuestionsViewController */,
 			);
@@ -217,6 +222,15 @@
 				79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */,
 			);
 			path = QuestionCell;
+			sourceTree = "<group>";
+		};
+		79CEA83C25E841120097ECC9 /* DetailedAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				79CEA83D25E841440097ECC9 /* DetailedAnswerViewController.swift */,
+				79CEA83E25E841440097ECC9 /* DetailedAnswerViewController.xib */,
+			);
+			path = DetailedAnswer;
 			sourceTree = "<group>";
 		};
 		885FF0B025E3FC7C000674A3 /* ResultsView */ = {
@@ -315,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79CEA84025E841440097ECC9 /* DetailedAnswerViewController.xib in Resources */,
 				79249EAB25E01BDF00CBD0F6 /* LaunchScreen.storyboard in Resources */,
 				79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */,
 				888EA3EA25E7A31300EE0869 /* ResultsCollectionViewHeader.xib in Resources */,
@@ -393,6 +408,7 @@
 				88C21C5F25E7F66000FAF75F /* String.swift in Sources */,
 				79249E9E25E01BDE00CBD0F6 /* SceneDelegate.swift in Sources */,
 				888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */,
+				79CEA83F25E841440097ECC9 /* DetailedAnswerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,8 +571,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UPWXFVVHLN;
-				DEVELOPMENT_TEAM = G66XPV3HVM;
 				DEVELOPMENT_TEAM = 87N7QPTHS6;
 				INFOPLIST_FILE = "Project-2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -51,7 +51,6 @@ extension QuestionsViewController: UISearchResultsUpdating {
 
 private extension QuestionsViewController {
     func search(query: String) {
-        print(query)
         activityIndicator.startAnimating()
         dataSource?.query = query
         dataSource?.fetchData(at: IndexPath(row: 0, section: 0))

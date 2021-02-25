@@ -13,6 +13,7 @@ class AnswerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var answerScoreLabel: UILabel?
     @IBOutlet weak var profileNameLabel: UILabel?
     @IBOutlet weak var profileReputationLabel: UILabel?
+    @IBOutlet weak var scoreImage: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,12 +45,29 @@ extension AnswerCollectionViewCell: Configurable {
             return
         }
 
-        model.body.attributedStringFromHTML { [weak self] attrString in
-            self?.bodyLabel?.attributedText = attrString
-        }
-
         answerScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
+
+        model.setAttributedString { [weak self] in
+            self?.bodyLabel?.attributedText = $0
+        }
+
+        if model.score < 0 {
+            answerScoreLabel?.textColor = .systemRed
+            scoreImage.tintColor = .systemRed
+            scoreImage.image = UIImage(systemName: "hand.thumbsdown")
+        } else if model.score > 0 {
+            answerScoreLabel?.textColor = .systemGreen
+            scoreImage.tintColor = .systemGreen
+            scoreImage.image = UIImage(systemName: "hand.thumbsup")
+        } else if model.score == 0 {
+            scoreImage.image = UIImage(systemName: "circle")
+        }
+
+        if abs(model.score) < 3 {
+            answerScoreLabel?.textColor = .secondaryLabel
+            scoreImage.tintColor = .secondaryLabel
+        }
     }
 }

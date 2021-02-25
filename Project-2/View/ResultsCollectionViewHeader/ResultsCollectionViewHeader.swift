@@ -47,7 +47,7 @@ private extension ResultsCollectionViewHeader {
 extension ResultsCollectionViewHeader: Configurable {
     func configure(with model: AnyObject?) {
         guard let model = model as? Question else {
-            print("Bad")
+            print("Bad model")
             return
         }
 
@@ -55,6 +55,9 @@ extension ResultsCollectionViewHeader: Configurable {
         questionScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
-        bodyLabel?.attributedText = model.htmlAttributedString
+
+        model.setAttributedString { [weak self] in
+            self?.bodyLabel?.attributedText = $0
+        }
     }
 }

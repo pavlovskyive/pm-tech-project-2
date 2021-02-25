@@ -5,26 +5,36 @@
 //  Created by Ilya Senchukov on 25.02.2021.
 //
 
-import Foundation
+import UIKit
 
-protocol BodyContaining {
+protocol BodyContaining: class {
     var body: String { get set }
-
-    var htmlAttributedString: NSAttributedString? { get }
 }
 
 extension BodyContaining {
-    var htmlAttributedString: NSAttributedString? {
+    func setAttributedString(completion: @escaping (NSAttributedString?) -> Void) {
         let body = """
         <!doctype html>
         <html>
             <style>
+                html {
+                    font-family: '-apple-system', BlinkMacSystemFont, sans-serif;
+                    line-height: 1.5;
+                }
                 p {
-                    font-family: '-apple-system', 'HelveticaNeue';
-                    font-size: 14
+                    font-size: 1.2rem;
+                }
+                li {
+                    font-size: 1.2rem;
+                    margin-bottom: 0.2rem;
                 }
                 code {
-                    background-color: #f2f2f2;
+                    font-weight: normal;
+                    line-height: 1.5;
+                }
+                img {
+                    max-height: 100%;
+                    max-width: \(UIScreen.main.bounds.width - 40) !important;
                 }
             </style>
             <body>
@@ -33,15 +43,8 @@ extension BodyContaining {
         </html>
         """
 
-        guard let data = body.data(using: .utf8) else {
-            return nil
+        body.attributedStringFromHTML { string in
+            completion(string)
         }
-
-        return try? NSAttributedString(
-            data: data,
-            options: [
-                .documentType: NSAttributedString.DocumentType.html
-            ],
-            documentAttributes: nil)
     }
 }

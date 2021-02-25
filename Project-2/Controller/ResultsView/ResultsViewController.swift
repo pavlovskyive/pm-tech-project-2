@@ -100,8 +100,8 @@ private extension ResultsViewController {
 
     func setLayout() {
         let size = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(100)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(250)
         )
 
         let item = NSCollectionLayoutItem(layoutSize: size)
@@ -112,8 +112,8 @@ private extension ResultsViewController {
         section.interGroupSpacing = 20
 
         let headerSize = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(200)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(200)
         )
 
         let header = NSCollectionLayoutBoundarySupplementaryItem(
@@ -133,5 +133,15 @@ extension ResultsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let model = self.dataSource?.object(with: indexPath)
+
+        let detailedVC = DetailedAnswerViewController(nibName: "DetailedAnswerViewController", bundle: Bundle.main)
+        detailedVC.model = model
+
+        navigationController?.pushViewController(detailedVC, animated: true)
     }
 }
