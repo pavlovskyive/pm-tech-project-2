@@ -22,10 +22,7 @@
 		796E357E25E25AEE0068FF89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E357D25E25AEE0068FF89 /* APIService.swift */; };
 		796E358225E267550068FF89 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358125E267550068FF89 /* APIResult.swift */; };
 		796E358725E26D9D0068FF89 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358625E26D9D0068FF89 /* Data.swift */; };
-<<<<<<< HEAD
 		AE358D3B25E579DD00F0116C /* ThrotllerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE358D3A25E579DD00F0116C /* ThrotllerService.swift */; };
-||||||| merged common ancestors
-=======
 		79CEA7E725E7D8620097ECC9 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */; };
 		79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */; };
 		885FF0AD25E3EE18000674A3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */; };
@@ -39,7 +36,6 @@
 		888EA3ED25E7A50200EE0869 /* BodyContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3EC25E7A50200EE0869 /* BodyContaining.swift */; };
 		888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */; };
 		88C21C5F25E7F66000FAF75F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C21C5E25E7F66000FAF75F /* String.swift */; };
->>>>>>> main
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,10 +56,7 @@
 		796E357D25E25AEE0068FF89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		796E358125E267550068FF89 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		796E358625E26D9D0068FF89 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		AE358D3A25E579DD00F0116C /* ThrotllerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrotllerService.swift; sourceTree = "<group>"; };
-||||||| merged common ancestors
-=======
 		79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +70,6 @@
 		888EA3EC25E7A50200EE0869 /* BodyContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContaining.swift; sourceTree = "<group>"; };
 		888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableSupplementaryView.swift; sourceTree = "<group>"; };
 		88C21C5E25E7F66000FAF75F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
->>>>>>> main
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,26 +533,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = UPWXFVVHLN;
-||||||| merged common ancestors
-				DEVELOPMENT_TEAM = G66XPV3HVM;
-=======
-				DEVELOPMENT_TEAM = 87N7QPTHS6;
->>>>>>> main
 				INFOPLIST_FILE = "Project-2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmtechacademy.Project;
-||||||| merged common ancestors
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pmtechacademy.Project-2";
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beaxhem.Project-2";
->>>>>>> main
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -575,26 +555,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = UPWXFVVHLN;
-||||||| merged common ancestors
 				DEVELOPMENT_TEAM = G66XPV3HVM;
-=======
 				DEVELOPMENT_TEAM = 87N7QPTHS6;
->>>>>>> main
 				INFOPLIST_FILE = "Project-2/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.pmtechacademy.Project;
-||||||| merged common ancestors
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pmtechacademy.Project-2";
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beaxhem.Project-2";
->>>>>>> main
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
