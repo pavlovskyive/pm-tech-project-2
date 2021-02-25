@@ -37,7 +37,7 @@ struct QuestionsStrategy: FetchStrategy {
     }
 
     var additionalParameters: [String: String] {
-        [:]
+        ["filter": "withbody"]
     }
 }
 
@@ -92,7 +92,6 @@ class APIService<T: APIResultContainable> {
         fetchStrategy.parameters = parameters
 
         let pathComponent = fetchStrategy.pathComponent
-
         parameters.merge(fetchStrategy.additionalParameters) { (parameters, _) in parameters }
 
         fetchData(pathComponent: pathComponent,
