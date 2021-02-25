@@ -61,6 +61,7 @@ struct AnswersStrategy: FetchStrategy {
     init() {}
 
     func adaptFetch(fetchPageParameters: FetchPageParameters<Model>) -> FetchDataParameters<Model> {
+
         let query = fetchPageParameters.query
 
         let pathComponent = APIConstants.answersComponent.replacingOccurrences(of: "{ids}", with: query)

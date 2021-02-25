@@ -106,8 +106,7 @@ private extension QuestionsViewController {
 
 extension QuestionsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
+                        willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
     }
 
