@@ -22,13 +22,13 @@
 		796E357E25E25AEE0068FF89 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E357D25E25AEE0068FF89 /* APIService.swift */; };
 		796E358225E267550068FF89 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358125E267550068FF89 /* APIResult.swift */; };
 		796E358725E26D9D0068FF89 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E358625E26D9D0068FF89 /* Data.swift */; };
+		79CEA7E725E7D8620097ECC9 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */; };
+		79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */; };
 		885FF0AD25E3EE18000674A3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */; };
 		885FF0B325E3FC98000674A3 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885FF0B225E3FC98000674A3 /* ResultsViewController.xib */; };
 		885FF0C025E401D1000674A3 /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */; };
 		885FF0C425E40246000674A3 /* AnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885FF0C325E40246000674A3 /* AnswerCollectionViewCell.xib */; };
 		885FF0C825E40555000674A3 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885FF0C725E40554000674A3 /* UIResponder.swift */; };
-		888EA3D325E67E1D00EE0869 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3D225E67E1D00EE0869 /* QuestionCell.swift */; };
-		888EA3D625E67E2200EE0869 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888EA3D525E67E2200EE0869 /* QuestionCell.xib */; };
 		888EA3E125E79EA400EE0869 /* ResultsCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3E025E79EA400EE0869 /* ResultsCollectionViewHeader.swift */; };
 		888EA3E725E7A2D500EE0869 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3E625E7A2D500EE0869 /* Owner.swift */; };
 		888EA3EA25E7A31300EE0869 /* ResultsCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */; };
@@ -54,13 +54,13 @@
 		796E357D25E25AEE0068FF89 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		796E358125E267550068FF89 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		796E358625E26D9D0068FF89 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		885FF0AC25E3EE18000674A3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		885FF0B225E3FC98000674A3 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
 		885FF0BF25E401D1000674A3 /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		885FF0C325E40246000674A3 /* AnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		885FF0C725E40554000674A3 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
-		888EA3D225E67E1D00EE0869 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionCell.swift; path = "Project-2/View/QuestionCell.swift"; sourceTree = SOURCE_ROOT; };
-		888EA3D525E67E2200EE0869 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionCell.xib; path = "Project-2/View/QuestionCell.xib"; sourceTree = SOURCE_ROOT; };
 		888EA3E025E79EA400EE0869 /* ResultsCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewHeader.swift; sourceTree = "<group>"; };
 		888EA3E625E7A2D500EE0869 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCollectionViewHeader.xib; sourceTree = "<group>"; };
@@ -204,6 +204,15 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		79CEA7E425E7D8620097ECC9 /* QuestionCell */ = {
+			isa = PBXGroup;
+			children = (
+				79CEA7E525E7D8620097ECC9 /* QuestionCell.swift */,
+				79CEA7E625E7D8620097ECC9 /* QuestionCell.xib */,
+			);
+			path = QuestionCell;
+			sourceTree = "<group>";
+		};
 		885FF0B025E3FC7C000674A3 /* ResultsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,8 +225,8 @@
 		885FF0BE25E401B7000674A3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79CEA7E425E7D8620097ECC9 /* QuestionCell */,
 				888EA3E425E79EAC00EE0869 /* ResultsCollectionViewHeader */,
-				888EA3D125E67E0400EE0869 /* QuestionCell */,
 				885FF0C225E40237000674A3 /* AnswerCollectionViewCell */,
 			);
 			path = View;
@@ -230,15 +239,6 @@
 				885FF0C325E40246000674A3 /* AnswerCollectionViewCell.xib */,
 			);
 			path = AnswerCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		888EA3D125E67E0400EE0869 /* QuestionCell */ = {
-			isa = PBXGroup;
-			children = (
-				888EA3D225E67E1D00EE0869 /* QuestionCell.swift */,
-				888EA3D525E67E2200EE0869 /* QuestionCell.xib */,
-			);
-			path = QuestionCell;
 			sourceTree = "<group>";
 		};
 		888EA3E425E79EAC00EE0869 /* ResultsCollectionViewHeader */ = {
@@ -310,8 +310,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				79249EAB25E01BDF00CBD0F6 /* LaunchScreen.storyboard in Resources */,
+				79CEA7E825E7D8620097ECC9 /* QuestionCell.xib in Resources */,
 				888EA3EA25E7A31300EE0869 /* ResultsCollectionViewHeader.xib in Resources */,
-				888EA3D625E67E2200EE0869 /* QuestionCell.xib in Resources */,
 				79249EA825E01BDF00CBD0F6 /* Assets.xcassets in Resources */,
 				885FF0C425E40246000674A3 /* AnswerCollectionViewCell.xib in Resources */,
 				885FF0B325E3FC98000674A3 /* ResultsViewController.xib in Resources */,
@@ -376,7 +376,6 @@
 				885FF0C825E40555000674A3 /* UIResponder.swift in Sources */,
 				79122BB825E50AB1006D937C /* PrefetchingDataSource.swift in Sources */,
 				796E357B25E259C30068FF89 /* APIConstants.swift in Sources */,
-				888EA3D325E67E1D00EE0869 /* QuestionCell.swift in Sources */,
 				79249E9C25E01BDE00CBD0F6 /* AppDelegate.swift in Sources */,
 				885FF0C025E401D1000674A3 /* AnswerCollectionViewCell.swift in Sources */,
 				888EA3E725E7A2D500EE0869 /* Owner.swift in Sources */,
