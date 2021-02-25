@@ -9,8 +9,8 @@ import UIKit
 
 class QuestionsViewController: UIViewController {
     // MARK: Outlets
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var centerY: NSLayoutConstraint!
     @IBOutlet weak var centerX: NSLayoutConstraint!
@@ -27,6 +27,7 @@ class QuestionsViewController: UIViewController {
         searchBar.delegate = self
         prepareCollectionView()
         prepareDataSource()
+
     }
 
 }
@@ -49,7 +50,16 @@ extension QuestionsViewController: UISearchResultsUpdating {
 
 // MARK: - Private Methods
 
-private extension QuestionsViewController {    
+private extension QuestionsViewController {
+    func setUpCollectionViewConstraint() {
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            self.collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        self.collectionView.layoutIfNeeded()
+    }
     
     func search(query: String) {
         activityIndicator.startAnimating()
@@ -62,8 +72,8 @@ private extension QuestionsViewController {
     
     func doSearchBarAnimation() {
         let frame = self.view.safeAreaLayoutGuide.layoutFrame
+        self.centerY.constant = -self.view.frame.height / 2 + (self.view.frame.height - frame.height)
         UIView.animate(withDuration: 3) {
-            self.centerY.constant = -self.view.frame.height / 2 + (self.view.frame.height - frame.height)
             self.view.layoutIfNeeded()
         }
     }

@@ -14,7 +14,7 @@
                 <outlet property="activityIndicator" destination="OZB-bq-BwK" id="Zez-0C-m9f"/>
                 <outlet property="centerX" destination="Lls-5m-Ixf" id="Ztw-Hz-gP9"/>
                 <outlet property="centerY" destination="ct3-Oj-c8d" id="DKJ-ED-S2G"/>
-                <outlet property="collectionView" destination="xYt-GS-rS7" id="rB3-uX-Bnz"/>
+                <outlet property="collectionView" destination="oY0-Jc-aNY" id="E9Z-Z9-c2d"/>
                 <outlet property="searchBar" destination="isN-Vy-KuF" id="fh2-kG-z9G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -31,22 +31,24 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OZB-bq-BwK" userLabel="Activity Indicator">
                     <rect key="frame" x="204" y="270.66666666666669" width="20" height="20"/>
                 </activityIndicatorView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="xYt-GS-rS7">
-                    <rect key="frame" x="91" y="510" width="187" height="382"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oY0-Jc-aNY">
+                    <rect key="frame" x="0.0" y="496" width="428" height="396"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewLayout key="collectionViewLayout" id="2Ge-it-e6W"/>
+                    <collectionViewLayout key="collectionViewLayout" id="6hZ-la-w9l"/>
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="oY0-Jc-aNY" firstAttribute="top" secondItem="isN-Vy-KuF" secondAttribute="bottom" id="2z2-Jb-Reg"/>
                 <constraint firstItem="OZB-bq-BwK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" priority="950" id="3XB-xY-3In"/>
                 <constraint firstItem="isN-Vy-KuF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Lls-5m-Ixf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="isN-Vy-KuF" secondAttribute="trailing" constant="3" id="MqB-n6-aZZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oY0-Jc-aNY" secondAttribute="trailing" id="SZD-mM-1cl"/>
                 <constraint firstItem="OZB-bq-BwK" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.6" id="XMJ-Os-k2k"/>
-                <constraint firstItem="xYt-GS-rS7" firstAttribute="top" secondItem="isN-Vy-KuF" secondAttribute="bottom" constant="14" id="XfY-GH-bif"/>
                 <constraint firstItem="isN-Vy-KuF" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="ct3-Oj-c8d"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oY0-Jc-aNY" secondAttribute="bottom" id="gq6-hz-TTM"/>
+                <constraint firstItem="oY0-Jc-aNY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wmF-G7-kMT"/>
             </constraints>
             <point key="canvasLocation" x="-946.26168224299056" y="71.922246220302384"/>
         </view>
