@@ -34,6 +34,7 @@
 		888EA3EA25E7A31300EE0869 /* ResultsCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */; };
 		888EA3ED25E7A50200EE0869 /* BodyContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3EC25E7A50200EE0869 /* BodyContaining.swift */; };
 		888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */; };
+		88C21C5F25E7F66000FAF75F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C21C5E25E7F66000FAF75F /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		888EA3E925E7A31300EE0869 /* ResultsCollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsCollectionViewHeader.xib; sourceTree = "<group>"; };
 		888EA3EC25E7A50200EE0869 /* BodyContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyContaining.swift; sourceTree = "<group>"; };
 		888EA3F025E7C04500EE0869 /* ConfigurableSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableSupplementaryView.swift; sourceTree = "<group>"; };
+		88C21C5E25E7F66000FAF75F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				796E358625E26D9D0068FF89 /* Data.swift */,
 				885FF0C725E40554000674A3 /* UIResponder.swift */,
+				88C21C5E25E7F66000FAF75F /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				796E357825E250650068FF89 /* NetworkError.swift in Sources */,
 				796E357E25E25AEE0068FF89 /* APIService.swift in Sources */,
 				791EB6FC25E4515500704123 /* PrivateConstants.swift in Sources */,
+				88C21C5F25E7F66000FAF75F /* String.swift in Sources */,
 				79249E9E25E01BDE00CBD0F6 /* SceneDelegate.swift in Sources */,
 				888EA3F125E7C04600EE0869 /* ConfigurableSupplementaryView.swift in Sources */,
 			);
