@@ -7,6 +7,18 @@
 
 import Foundation
 
+typealias FetchPageParameters<T: APIResultContainable> = (
+    query: String,
+    page: Int,
+    pageSize: Int,
+    order: Order,
+    sort: Sort,
+    completion: (Result<APIResult<T>, NetworkError>) -> Void)
+
+typealias FetchDataParameters<T: APIResultContainable> = (
+    pathComponent: String,
+    fetchPageParameters: FetchPageParameters<T>)
+
 public enum Order: String {
     case ascending = "asc"
     case descending = "desc"
@@ -21,50 +33,49 @@ public enum Sort: String {
 
 protocol FetchStrategy {
 
-    var parameters: [String: String] { get set }
+    associatedtype Model: APIResultContainable
 
-    var pathComponent: String { get }
+    init()
 
-    var additionalParameters: [String: String] { get }
+    func adaptFetch(fetchPageParameters: FetchPageParameters<Model>) -> FetchDataParameters<Model>
 }
 
 struct QuestionsStrategy: FetchStrategy {
 
-    var parameters = [String: String]()
+    typealias Model = Question
 
-    var pathComponent: String {
-        APIConstants.questionsComponent
-    }
+    init() {}
 
-    var additionalParameters: [String: String] {
-        ["filter": "withbody"]
+    func adaptFetch(fetchPageParameters: FetchPageParameters<Model>) -> FetchDataParameters<Model> {
+        let pathComponent = APIConstants.questionsComponent
+
+        return (pathComponent: pathComponent,
+                fetchPageParameters: fetchPageParameters)
     }
 }
 
 struct AnswersStrategy: FetchStrategy {
 
-    var parameters = [String: String]()
+    typealias Model = Answer
 
-    var pathComponent: String {
-        guard let query = parameters["q"] else {
-            return ""
-        }
+    init() {}
 
-        return APIConstants.answersComponent.replacingOccurrences(of: "{ids}", with: query)
-    }
+    func adaptFetch(fetchPageParameters: FetchPageParameters<Model>) -> FetchDataParameters<Model> {
 
-    var additionalParameters: [String: String] {
-        ["filter": "withbody"]
+        let query = fetchPageParameters.query
+
+        let pathComponent = APIConstants.answersComponent.replacingOccurrences(of: "{ids}", with: query)
+
+        return (pathComponent: pathComponent,
+                fetchPageParameters: fetchPageParameters)
     }
 }
 
-class APIService<T: APIResultContainable> {
+class APIService<T: FetchStrategy> {
 
-    private var fetchStrategy: FetchStrategy
+    typealias Model = T.Model
 
-    init(fetchStrategy: FetchStrategy) {
-        self.fetchStrategy = fetchStrategy
-    }
+    private var fetchStrategy = T()
 
     lazy private var baseURL = APIConstants.apiBase
     lazy private var networkService = NetworkService(baseURLString: self.baseURL)
@@ -77,24 +88,30 @@ class APIService<T: APIResultContainable> {
         pageSize: Int = 15,
         order: Order = .descending,
         sort: Sort = .votes,
-        completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
+        completion: @escaping (Result<APIResult<Model>, NetworkError>) -> Void) {
 
-        var parameters: [String: String] = [
+        let parameters: [String: String] = [
             "q": query,
             "order": order.rawValue,
             "sort": sort.rawValue,
             "site": site,
             "page": "\(page)",
             "pageSize": "\(pageSize)",
+            "filter": "withbody",
             "key": apiKey
         ]
 
-        fetchStrategy.parameters = parameters
+        let fetchPageParameters: FetchPageParameters<Model> = (
+            query: query,
+            page: page,
+            pageSize: pageSize,
+            order: order,
+            sort: sort,
+            completion: completion)
 
-        let pathComponent = fetchStrategy.pathComponent
-        parameters.merge(fetchStrategy.additionalParameters) { (parameters, _) in parameters }
+        let fetchDataParameters = fetchStrategy.adaptFetch(fetchPageParameters: fetchPageParameters)
 
-        fetchData(pathComponent: pathComponent,
+        fetchData(pathComponent: fetchDataParameters.pathComponent,
                   parameters: parameters,
                   completion: completion)
     }
@@ -102,13 +119,13 @@ class APIService<T: APIResultContainable> {
     func fetchData(
         pathComponent: String,
         parameters: [String: String],
-        completion: @escaping (Result<APIResult<T>, NetworkError>) -> Void) {
+        completion: @escaping (Result<APIResult<Model>, NetworkError>) -> Void) {
 
         networkService.getRequest(pathComponent: pathComponent, parameters: parameters) { result in
 
             switch result {
             case .success(let data):
-                data.decode(type: APIResult<T>.self) { result in
+                data.decode(type: APIResult<T.Model>.self) { result in
                     switch result {
                     case .success(let result):
                         completion(.success(result))

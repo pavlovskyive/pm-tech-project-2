@@ -12,9 +12,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 
-    private var dataSource: PrefetchingDataSource<Answer, AnswerCollectionViewCell>?
-
-    private var apiService: APIService<Answer>?
+    private var dataSource: PrefetchingDataSource<AnswersStrategy, AnswerCollectionViewCell>?
 
     var question: Question?
 
@@ -73,9 +71,8 @@ private extension ResultsViewController {
             return
         }
 
-        dataSource = PrefetchingDataSource<Answer, AnswerCollectionViewCell>(
+        dataSource = PrefetchingDataSource<AnswersStrategy, AnswerCollectionViewCell>(
             collectionView: collectionView,
-            fetchStrategy: AnswersStrategy(),
             completion: onFetchCompleted(error:))
         dataSource?.headerConfig = question
         dataSource?.headerReusableClass = ResultsCollectionViewHeader.self

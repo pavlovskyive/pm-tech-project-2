@@ -17,7 +17,7 @@ class QuestionsViewController: UIViewController {
 
     // MARK: Variables
 
-    private var dataSource: PrefetchingDataSource<Question, QuestionCell>?
+    private var dataSource: PrefetchingDataSource<QuestionsStrategy, QuestionCell>?
 
     // MARK: Lifecycle
 
@@ -94,9 +94,9 @@ private extension QuestionsViewController {
     }
 
     func prepareDataSource() {
-        dataSource = PrefetchingDataSource<Question, QuestionCell>(
+        dataSource = PrefetchingDataSource<QuestionsStrategy, QuestionCell>(
             collectionView: collectionView,
-            fetchStrategy: QuestionsStrategy(), completion: onFetchCompleted(error:))
+            completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
     }
