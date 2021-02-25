@@ -7,11 +7,9 @@
 
 import UIKit
 
-class PrefetchingDataSource<T: APIResultContainable,
-                            CellClass: UICollectionViewCell>: NSObject,
-                                                              UICollectionViewDataSource,
-                                                              UICollectionViewDataSourcePrefetching
-where CellClass: Configurable {
+// swiftlint:disable line_length
+class PrefetchingDataSource<Strategy: FetchStrategy, CellClass: UICollectionViewCell>: NSObject, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching where CellClass: Configurable {
+    // swiftlint:enable line_length
 
     // MARK: Public Variables
 
@@ -22,13 +20,17 @@ where CellClass: Configurable {
         }
     }
 
+    public var headerConfig: AnyObject?
+
+    public var headerReusableClass: ConfigurableSupplementaryView.Type?
+
     // MARK: Private Properties
 
     // Fetching margin (meaning we fetch data for 20 cells in advance for smooth scrolling)
     private var margin = 20
 
     // Model
-    private var models = [T]()
+    private var models = [Strategy.Model]()
 
     // CollectionView Link
     private weak var collectionView: UICollectionView?
@@ -49,7 +51,7 @@ where CellClass: Configurable {
     private var pageSize = 15
 
     // Api service
-    private let apiService = APIService<Question>()
+    private let apiService: APIService<Strategy>?
 
     // MARK: Lifecycle
 
@@ -58,6 +60,8 @@ where CellClass: Configurable {
 
         self.collectionView = collectionView
         self.fetchCompletion = completion
+
+        apiService = APIService<Strategy>()
 
         super.init()
     }
@@ -81,7 +85,7 @@ where CellClass: Configurable {
 
         isFetching = true
 
-        apiService.fetchPage(query: query, page: pageSize) { result in
+        apiService?.fetchPage(query: query, page: currentPage) { result in
             switch result {
             case .success(let apiResult):
                 DispatchQueue.main.async {
@@ -95,10 +99,7 @@ where CellClass: Configurable {
                         paths.append(indexPath)
                     }
 
-                    guard let items = apiResult.items as? [T] else {
-                        self.fetchCompletion(NetworkError.badData)
-                        return
-                    }
+                    let items = apiResult.items
 
                     self.models.append(contentsOf: items)
                     self.collectionView?.insertItems(at: paths)
@@ -109,6 +110,14 @@ where CellClass: Configurable {
                 print(error)
             }
         }
+    }
+
+    public func object(with indexPath: IndexPath) -> Strategy.Model? {
+        guard models.count > indexPath.row else {
+            return nil
+        }
+
+        return models[indexPath.row]
     }
 
     // MARK: Private Methods
@@ -136,8 +145,10 @@ where CellClass: Configurable {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell = collectionView
-                .dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath) as? CellClass else {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellClass.reuseIdentifier,
+                for: indexPath) as? CellClass else {
+
             fatalError("Could not cast cell")
         }
 
@@ -145,6 +156,32 @@ where CellClass: Configurable {
         cell.configure(with: model as AnyObject)
 
         return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath) -> UICollectionReusableView {
+
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerClass = headerReusableClass else {
+                return UICollectionReusableView()
+            }
+
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: headerClass.reuseIdentifier,
+                    for: indexPath) as? ConfigurableSupplementaryView else {
+
+                return UICollectionReusableView()
+            }
+            headerView.configure(with: headerConfig)
+
+            return headerView
+        default:
+            assert(false, "Invalid element type")
+        }
     }
 
     // MARK: UICollectionViewDataSourcePrefetching

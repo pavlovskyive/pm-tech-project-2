@@ -17,7 +17,7 @@ class QuestionsViewController: UIViewController {
     private var isFirstSerch = true
     // MARK: Variables
     let throtllerService: ThrotllerService = ThrotllerService<String>(1)
-    private var dataSource: PrefetchingDataSource<Question, QuestionCell>?
+    private var dataSource: PrefetchingDataSource<QuestionsStrategy, QuestionCell>?
 
     // MARK: Lifecycle
 
@@ -35,7 +35,6 @@ class QuestionsViewController: UIViewController {
 extension QuestionsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
-        print(text)
         throtllerService.receive(text)
     }
 }
@@ -92,8 +91,9 @@ private extension QuestionsViewController {
 
     func prepareCollectionView() {
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: "QuestionCell", bundle: Bundle.main),
-                                forCellWithReuseIdentifier: "CellID")
+        let questionCellID = QuestionCell.reuseIdentifier
+        collectionView.register(UINib(nibName: questionCellID, bundle: Bundle.main),
+                                forCellWithReuseIdentifier: questionCellID)
 
         // Layout
         let size = NSCollectionLayoutSize(
@@ -114,8 +114,9 @@ private extension QuestionsViewController {
     }
 
     func prepareDataSource() {
-        dataSource = PrefetchingDataSource<Question, QuestionCell>(
-            collectionView: collectionView, completion: onFetchCompleted(error:))
+        dataSource = PrefetchingDataSource<QuestionsStrategy, QuestionCell>(
+            collectionView: collectionView,
+            completion: onFetchCompleted(error:))
         collectionView.dataSource = dataSource
         collectionView.prefetchDataSource = dataSource
     }
@@ -127,5 +128,17 @@ extension QuestionsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.dataSource?.collectionView(collectionView, prefetchItemsAt: [indexPath])
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+
+        guard let question = dataSource?.object(with: indexPath) else {
+            return
+        }
+
+        let resultsVC = ResultsViewController()
+        resultsVC.question = question
+        navigationController?.pushViewController(resultsVC, animated: true)
     }
 }
