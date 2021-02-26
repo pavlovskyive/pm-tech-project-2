@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="isN-Vy-KuF">
+                <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="How to learn Swift in one hour?" translatesAutoresizingMaskIntoConstraints="NO" id="isN-Vy-KuF">
                     <rect key="frame" x="3" y="440" width="422" height="56"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>

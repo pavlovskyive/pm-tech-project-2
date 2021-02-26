@@ -24,6 +24,13 @@ class ResultsViewController: UIViewController {
         fetchAnswers()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = ""
+        navigationItem.largeTitleDisplayMode = .never
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -43,7 +50,13 @@ private extension ResultsViewController {
     }
 
     func onFetchCompleted(error: Error?) {
+
+        UIView.animate(withDuration: 1) { [weak self] in
+            self?.collectionView?.alpha = 1
+        }
+
         DispatchQueue.main.async { [weak self] in
+
             guard let self = self, let activityIndicator = self.activityIndicator else {
                 return
             }
@@ -82,9 +95,14 @@ private extension ResultsViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         collectionView.prefetchDataSource = dataSource
+
+        dataSource?.fetchData(at: IndexPath(row: 0, section: 0))
     }
 
     func prepareCollectionView() {
+
+        collectionView?.alpha = 0
+
         collectionView?.register(
             UINib(nibName: AnswerCollectionViewCell.reuseIdentifier, bundle: nil),
             forCellWithReuseIdentifier: AnswerCollectionViewCell.reuseIdentifier)

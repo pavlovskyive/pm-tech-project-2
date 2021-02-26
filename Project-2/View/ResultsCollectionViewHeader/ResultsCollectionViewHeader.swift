@@ -11,6 +11,7 @@ class ResultsCollectionViewHeader: UICollectionReusableView, ConfigurableSupplem
 
     @IBOutlet weak var questionTitleLabel: UILabel?
     @IBOutlet weak var questionScoreLabel: UILabel?
+    @IBOutlet weak var questionScoreImage: UIImageView?
     @IBOutlet weak var profileNameLabel: UILabel?
     @IBOutlet weak var profileReputationLabel: UILabel?
     @IBOutlet weak var bodyLabel: UILabel?
@@ -28,6 +29,10 @@ class ResultsCollectionViewHeader: UICollectionReusableView, ConfigurableSupplem
 
     override func prepareForReuse() {
         questionTitleLabel?.text = ""
+        questionScoreLabel?.text = ""
+        profileReputationLabel?.text = ""
+        profileNameLabel?.text = ""
+        bodyLabel?.text = ""
     }
 
     override func awakeFromNib() {
@@ -55,9 +60,31 @@ extension ResultsCollectionViewHeader: Configurable {
         questionScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
+        
+        if model.score < 0 {
+            questionScoreLabel?.textColor = .systemRed
+            questionScoreImage?.tintColor = .systemRed
+            questionScoreImage?.image = UIImage(systemName: "hand.thumbsdown")
+        } else if model.score > 0 {
+            questionScoreLabel?.textColor = .systemGreen
+            questionScoreImage?.tintColor = .systemGreen
+            questionScoreImage?.image = UIImage(systemName: "hand.thumbsup")
+        } else if model.score == 0 {
+            questionScoreImage?.image = UIImage(systemName: "circle")
+        }
 
-        model.setAttributedString { [weak self] in
-            self?.bodyLabel?.attributedText = $0
+        if abs(model.score) < 3 {
+            questionScoreLabel?.textColor = .secondaryLabel
+            questionScoreImage?.tintColor = .secondaryLabel
+        }
+
+        if let htmlRepresentation = model.htmlRepresentation {
+            self.bodyLabel?.attributedText = htmlRepresentation
+        } else {
+            model.setAttributedString { [weak self] in
+                model.htmlRepresentation = $0
+                self?.bodyLabel?.attributedText = $0
+            }
         }
     }
 }

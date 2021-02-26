@@ -27,9 +27,15 @@ class QuestionsViewController: UIViewController {
         searchBar.delegate = self
         prepareCollectionView()
         prepareDataSource()
-
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        title = "Find your answers"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+    }
 }
 
 extension QuestionsViewController: UISearchBarDelegate {
@@ -62,7 +68,7 @@ private extension QuestionsViewController {
     func doSearchBarAnimation() {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let viewsFrameHeight = self.view.frame.height
-        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 25)
+        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 50)
         UIView.animate(
             withDuration: 0.4,
             delay: 0,

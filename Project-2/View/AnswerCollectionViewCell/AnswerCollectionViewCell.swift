@@ -49,8 +49,13 @@ extension AnswerCollectionViewCell: Configurable {
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
 
-        model.setAttributedString { [weak self] in
-            self?.bodyLabel?.attributedText = $0
+        if let htmlRepresentation = model.htmlRepresentation {
+            self.bodyLabel?.attributedText = htmlRepresentation
+        } else {
+            model.setAttributedString { [weak self] in
+                model.htmlRepresentation = $0
+                self?.bodyLabel?.attributedText = $0
+            }
         }
 
         if model.score < 0 {

@@ -24,6 +24,8 @@ protocol APIResultContainable: Codable {
 
 class Question: APIResultContainable, BodyContaining {
 
+    var htmlRepresentation: NSAttributedString?
+
     let isAnswered: Bool
     let score: Int
     let questionID: Int
@@ -42,6 +44,8 @@ class Question: APIResultContainable, BodyContaining {
 }
 
 class Answer: APIResultContainable, BodyContaining {
+
+    var htmlRepresentation: NSAttributedString?
 
     let isAccepted: Bool
     var body: String

@@ -9,6 +9,7 @@ import UIKit
 
 protocol BodyContaining: class {
     var body: String { get set }
+    var htmlRepresentation: NSAttributedString? { get set }
 }
 
 extension BodyContaining {
@@ -23,6 +24,10 @@ extension BodyContaining {
                 }
                 p {
                     font-size: 1.2rem;
+                    margin-bottom: 0.5rem;
+                }
+                ul {
+                    margin-bottom: 2rem;
                 }
                 li {
                     font-size: 1.2rem;

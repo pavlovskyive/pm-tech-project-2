@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBr-qM-TN4">
-                    <rect key="frame" x="10" y="10" width="369" height="104"/>
+                    <rect key="frame" x="15" y="10" width="359" height="104"/>
                     <attributedString key="attributedText">
                         <fragment content="Label">
                             <attributes>
@@ -40,8 +40,8 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-aE-oj2">
                     <rect key="frame" x="10" y="124" width="177" height="14"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" systemColor="systemGrayColor"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                    <color key="textColor" systemColor="secondaryLabelColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="532" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwg-zf-tLB">
@@ -59,8 +59,8 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ge-xq-5YU" userLabel="Separator">
-                    <rect key="frame" x="0.0" y="187" width="414" height="1"/>
-                    <color key="backgroundColor" systemColor="separatorColor"/>
+                    <rect key="frame" x="5" y="187" width="404" height="1"/>
+                    <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                     <color key="tintColor" systemColor="separatorColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="I9u-Pr-TYS"/>
@@ -92,14 +92,13 @@
             <constraints>
                 <constraint firstItem="ecI-5p-MJD" firstAttribute="width" secondItem="ecI-5p-MJD" secondAttribute="height" multiplier="1:1" id="CXd-jB-9NZ"/>
                 <constraint firstItem="byB-Qw-q3X" firstAttribute="leading" secondItem="qc5-jP-oWn" secondAttribute="leading" id="CuV-QK-hrw"/>
-                <constraint firstItem="1ge-xq-5YU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cxx-UZ-oXt"/>
+                <constraint firstItem="1ge-xq-5YU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="Cxx-UZ-oXt"/>
                 <constraint firstItem="bf0-bZ-lvO" firstAttribute="leading" secondItem="qc5-jP-oWn" secondAttribute="leading" id="FYQ-SV-gHh"/>
                 <constraint firstItem="qc5-jP-oWn" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="GGD-kV-UKQ"/>
-                <constraint firstAttribute="trailing" secondItem="1ge-xq-5YU" secondAttribute="trailing" id="GOm-qy-lsC"/>
+                <constraint firstAttribute="trailing" secondItem="1ge-xq-5YU" secondAttribute="trailing" constant="5" id="GOm-qy-lsC"/>
                 <constraint firstItem="byB-Qw-q3X" firstAttribute="leading" secondItem="aAa-aE-oj2" secondAttribute="trailing" constant="20" id="KIg-lh-DaM"/>
                 <constraint firstItem="ecI-5p-MJD" firstAttribute="leading" secondItem="aAa-aE-oj2" secondAttribute="leading" id="KyF-k7-Erm"/>
                 <constraint firstItem="bTr-AW-ddC" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-10" id="LHk-As-lkX"/>
-                <constraint firstItem="aAa-aE-oj2" firstAttribute="leading" secondItem="yBr-qM-TN4" secondAttribute="leading" id="NRz-3q-b7m"/>
                 <constraint firstItem="0rE-c0-mOC" firstAttribute="top" secondItem="aAa-aE-oj2" secondAttribute="bottom" id="OTu-0M-QAL"/>
                 <constraint firstItem="ecI-5p-MJD" firstAttribute="centerY" secondItem="0rE-c0-mOC" secondAttribute="centerY" id="P8J-QC-cBZ"/>
                 <constraint firstItem="aAa-aE-oj2" firstAttribute="top" secondItem="byB-Qw-q3X" secondAttribute="top" id="RoJ-8t-vbz"/>
@@ -108,13 +107,14 @@
                 <constraint firstItem="qc5-jP-oWn" firstAttribute="top" secondItem="byB-Qw-q3X" secondAttribute="bottom" id="Y3P-Bk-vDd"/>
                 <constraint firstItem="0rE-c0-mOC" firstAttribute="leading" secondItem="ecI-5p-MJD" secondAttribute="trailing" constant="2" id="bCx-9e-Qf2"/>
                 <constraint firstAttribute="bottom" secondItem="bf0-bZ-lvO" secondAttribute="bottom" constant="15" id="eOI-2l-tcL"/>
-                <constraint firstItem="bTr-AW-ddC" firstAttribute="leading" secondItem="yBr-qM-TN4" secondAttribute="trailing" id="g8h-Om-tFl"/>
-                <constraint firstItem="yBr-qM-TN4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gdR-c3-d7J"/>
+                <constraint firstItem="bTr-AW-ddC" firstAttribute="leading" secondItem="yBr-qM-TN4" secondAttribute="trailing" constant="5" id="g8h-Om-tFl"/>
+                <constraint firstItem="yBr-qM-TN4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="gdR-c3-d7J"/>
                 <constraint firstItem="1ge-xq-5YU" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="nek-HH-FSC"/>
                 <constraint firstItem="Bwg-zf-tLB" firstAttribute="leading" secondItem="bf0-bZ-lvO" secondAttribute="trailing" constant="3" id="obf-sx-Z9P"/>
                 <constraint firstItem="bf0-bZ-lvO" firstAttribute="top" secondItem="qc5-jP-oWn" secondAttribute="bottom" constant="2" id="pya-mU-Lss"/>
                 <constraint firstItem="bTr-AW-ddC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="q84-Ie-tU7"/>
                 <constraint firstAttribute="trailing" secondItem="qc5-jP-oWn" secondAttribute="trailing" id="qRj-mu-aXK"/>
+                <constraint firstItem="aAa-aE-oj2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rWF-bY-CJx"/>
                 <constraint firstItem="byB-Qw-q3X" firstAttribute="top" secondItem="yBr-qM-TN4" secondAttribute="bottom" constant="10" id="znn-8f-Z20"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -132,6 +132,9 @@
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -140,9 +143,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
