@@ -60,7 +60,7 @@ extension ResultsCollectionViewHeader: Configurable {
         questionScoreLabel?.text = "\(model.score)"
         profileNameLabel?.text = model.owner.name
         profileReputationLabel?.text = "\(model.owner.reputation ?? 0)"
-        
+
         if model.score < 0 {
             questionScoreLabel?.textColor = .systemRed
             questionScoreImage?.tintColor = .systemRed

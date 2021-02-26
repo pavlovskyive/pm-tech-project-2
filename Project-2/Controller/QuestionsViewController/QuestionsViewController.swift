@@ -68,7 +68,7 @@ private extension QuestionsViewController {
     func doSearchBarAnimation() {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let viewsFrameHeight = self.view.frame.height
-        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 50)
+        self.centerY.constant = -viewsFrameHeight / 2 + (viewsFrameHeight - safeAreaFrame.height - 40)
         UIView.animate(
             withDuration: 0.4,
             delay: 0,
